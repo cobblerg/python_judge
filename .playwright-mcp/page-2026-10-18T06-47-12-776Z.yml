@@ -1,0 +1,125 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - button "학급 현황" [ref=e36] [cursor=pointer]
+    - button "로그아웃" [ref=e37] [cursor=pointer]
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: TEACHER SPACE
+        - heading "문제 관리" [level=1] [ref=e1291]
+        - paragraph [ref=e43]: 문제를 추가하고 내용을 수정하거나 공개 여부를 설정하세요.
+      - generic [ref=e44]:
+        - button "학급 현황" [ref=e45] [cursor=pointer]
+        - button "문제 관리" [active] [ref=e46] [cursor=pointer]
+        - button "목록 새로고침" [ref=e1292] [cursor=pointer]
+    - generic [ref=e119]:
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - heading "등록된 문제" [level=2] [ref=e122]
+          - paragraph [ref=e123]: 문제를 공개하면 학생 화면에 표시됩니다.
+        - button "+ 문제 추가" [ref=e124] [cursor=pointer]
+      - generic [ref=e125]:
+        - article [ref=e1293]:
+          - generic [ref=e1294]: "01"
+          - generic [ref=e1295]:
+            - generic [ref=e1296]: 두 수의 합
+            - generic [ref=e1297]: 입문 · 입력과 출력 · 테스트 5개
+          - generic [ref=e1298]: 비공개
+          - generic [ref=e1299]:
+            - button "공개로" [ref=e1300] [cursor=pointer]
+            - button "수정" [ref=e1301] [cursor=pointer]
+            - button "삭제" [ref=e1302] [cursor=pointer]
+        - article [ref=e1303]:
+          - generic [ref=e1304]: "02"
+          - generic [ref=e1305]:
+            - generic [ref=e1306]: 짝수일까 홀수일까
+            - generic [ref=e1307]: 입문 · 조건문 · 테스트 5개
+          - generic [ref=e1308]: 공개
+          - generic [ref=e1309]:
+            - button "비공개로" [ref=e1310] [cursor=pointer]
+            - button "수정" [ref=e1311] [cursor=pointer]
+            - button "삭제" [ref=e1312] [cursor=pointer]
+        - article [ref=e1313]:
+          - generic [ref=e1314]: "03"
+          - generic [ref=e1315]:
+            - generic [ref=e1316]: 가장 큰 수 찾기
+            - generic [ref=e1317]: 입문 · 반복문 · 테스트 5개
+          - generic [ref=e1318]: 공개
+          - generic [ref=e1319]:
+            - button "비공개로" [ref=e1320] [cursor=pointer]
+            - button "수정" [ref=e1321] [cursor=pointer]
+            - button "삭제" [ref=e1322] [cursor=pointer]
+        - article [ref=e1323]:
+          - generic [ref=e1324]: "04"
+          - generic [ref=e1325]:
+            - generic [ref=e1326]: 거꾸로 읽어도 같은 글자
+            - generic [ref=e1327]: 기초 · 문자열 · 테스트 5개
+          - generic [ref=e1328]: 공개
+          - generic [ref=e1329]:
+            - button "비공개로" [ref=e1330] [cursor=pointer]
+            - button "수정" [ref=e1331] [cursor=pointer]
+            - button "삭제" [ref=e1332] [cursor=pointer]
+        - article [ref=e1333]:
+          - generic [ref=e1334]: "05"
+          - generic [ref=e1335]:
+            - generic [ref=e1336]: 구구단 한 줄 출력
+            - generic [ref=e1337]: 기초 · 반복문 · 테스트 3개
+          - generic [ref=e1338]: 공개
+          - generic [ref=e1339]:
+            - button "비공개로" [ref=e1340] [cursor=pointer]
+            - button "수정" [ref=e1341] [cursor=pointer]
+            - button "삭제" [ref=e1342] [cursor=pointer]
+        - article [ref=e1343]:
+          - generic [ref=e1344]: "06"
+          - generic [ref=e1345]:
+            - generic [ref=e1346]: 약수의 개수
+            - generic [ref=e1347]: 기초 · 반복문 · 테스트 5개
+          - generic [ref=e1348]: 공개
+          - generic [ref=e1349]:
+            - button "비공개로" [ref=e1350] [cursor=pointer]
+            - button "수정" [ref=e1351] [cursor=pointer]
+            - button "삭제" [ref=e1352] [cursor=pointer]
+        - article [ref=e1353]:
+          - generic [ref=e1354]: "07"
+          - generic [ref=e1355]:
+            - generic [ref=e1356]: 별 계단 만들기
+            - generic [ref=e1357]: 기초 · 반복문 · 테스트 4개
+          - generic [ref=e1358]: 공개
+          - generic [ref=e1359]:
+            - button "비공개로" [ref=e1360] [cursor=pointer]
+            - button "수정" [ref=e1361] [cursor=pointer]
+            - button "삭제" [ref=e1362] [cursor=pointer]
+        - article [ref=e1363]:
+          - generic [ref=e1364]: "08"
+          - generic [ref=e1365]:
+            - generic [ref=e1366]: 평균 점수와 등급
+            - generic [ref=e1367]: 도전 · 조건문 · 계산 · 테스트 5개
+          - generic [ref=e1368]: 공개
+          - generic [ref=e1369]:
+            - button "비공개로" [ref=e1370] [cursor=pointer]
+            - button "수정" [ref=e1371] [cursor=pointer]
+            - button "삭제" [ref=e1372] [cursor=pointer]
+        - article [ref=e1373]:
+          - generic [ref=e1374]: "09"
+          - generic [ref=e1375]:
+            - generic [ref=e1376]: 피보나치 수
+            - generic [ref=e1377]: 도전 · 반복문 · 수열 · 테스트 5개
+          - generic [ref=e1378]: 공개
+          - generic [ref=e1379]:
+            - button "비공개로" [ref=e1380] [cursor=pointer]
+            - button "수정" [ref=e1381] [cursor=pointer]
+            - button "삭제" [ref=e1382] [cursor=pointer]
+        - article [ref=e1383]:
+          - generic [ref=e1384]: "10"
+          - generic [ref=e1385]:
+            - generic [ref=e1386]: 문자 속 모음 세기
+            - generic [ref=e1387]: 도전 · 문자열 · 반복문 · 테스트 5개
+          - generic [ref=e1388]: 공개
+          - generic [ref=e1389]:
+            - button "비공개로" [ref=e1390] [cursor=pointer]
+            - button "수정" [ref=e1391] [cursor=pointer]
+            - button "삭제" [ref=e1392] [cursor=pointer]
+  - status: 담당 선생님 계정으로 로그인했어요.

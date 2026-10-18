@@ -1,0 +1,25 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - button "로그인" [ref=e7] [cursor=pointer]
+  - dialog "누구로 로그인할까요?" [ref=e1171]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - img [ref=e12]
+        - strong [ref=e14]: 코드산책
+      - heading "누구로 로그인할까요?" [level=2] [ref=e1172]
+      - paragraph [ref=e16]: 학생과 선생님은 서로 다른 계정 공간을 사용합니다.
+      - region "계정 유형 선택" [ref=e17]:
+        - button "학생으로 로그인 문제 풀이와 내 진행 기록" [active] [ref=e18] [cursor=pointer]:
+          - generic [ref=e19]:
+            - text: 학생으로 로그인
+            - generic [ref=e20]: 문제 풀이와 내 진행 기록
+          - generic [ref=e21]: →
+        - button "선생님으로 로그인 학급의 학생별 풀이 현황" [ref=e22] [cursor=pointer]:
+          - generic [ref=e23]:
+            - text: 선생님으로 로그인
+            - generic [ref=e24]: 학급의 학생별 풀이 현황
+          - generic [ref=e25]: →
+  - status: 문제를 비공개로 바꿨어요.

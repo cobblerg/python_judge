@@ -1,0 +1,189 @@
+[
+  {
+    "id": "p001",
+    "title": "두 수의 합",
+    "level": "입문",
+    "topic": "입력과 출력",
+    "intro": "민수는 두 정수를 더하는 프로그램을 만들고 싶어요.\n두 정수 A와 B가 주어질 때, A와 B의 합을 출력하는 프로그램을 작성해 주세요.",
+    "input": "첫째 줄에 정수 A와 B가 공백으로 구분되어 주어집니다. (-1,000 ≤ A, B ≤ 1,000)",
+    "output": "A와 B의 합을 출력합니다.",
+    "starter": "# 두 정수를 입력받아 합을 출력해 보세요.\n",
+    "modelAnswer": "a, b = map(int, input().split())\nprint(a + b)",
+    "isPublic": true,
+    "testCases": [
+      { "input": "3 5", "output": "8", "isExample": true },
+      { "input": "-7 2", "output": "-5", "isExample": true },
+      { "input": "0 0", "output": "0", "isExample": false },
+      { "input": "1000 1000", "output": "2000", "isExample": false },
+      { "input": "-1000 999", "output": "-1", "isExample": false }
+    ]
+  },
+  {
+    "id": "p002",
+    "title": "짝수일까 홀수일까",
+    "level": "입문",
+    "topic": "조건문",
+    "intro": "자연수 N이 주어집니다. N이 짝수라면 \"짝수\", 홀수라면 \"홀수\"를 출력하는 프로그램을 작성해 주세요.",
+    "input": "첫째 줄에 자연수 N이 주어집니다. (1 ≤ N ≤ 1,000,000)",
+    "output": "짝수이면 even, 홀수이면 odd를 출력합니다.",
+    "starter": "# 짝수인지 홀수인지 판별해 보세요.\n",
+    "modelAnswer": "n = int(input())\nprint(\"even\" if n % 2 == 0 else \"odd\")",
+    "isPublic": true,
+    "testCases": [
+      { "input": "12", "output": "even", "isExample": true },
+      { "input": "7", "output": "odd", "isExample": true },
+      { "input": "1", "output": "odd", "isExample": false },
+      { "input": "2", "output": "even", "isExample": false },
+      { "input": "1000000", "output": "even", "isExample": false }
+    ]
+  },
+  {
+    "id": "p003",
+    "title": "가장 큰 수 찾기",
+    "level": "입문",
+    "topic": "반복문",
+    "intro": "수들을 차례대로 살펴보며 가장 큰 수를 찾아봅시다.\n첫 줄에 수의 개수 N이 주어지고, 다음 줄에 N개의 정수가 주어집니다. 가장 큰 수를 출력해 주세요.",
+    "input": "첫째 줄에 정수 N이 주어집니다.\n둘째 줄에 N개의 정수가 공백으로 구분되어 주어집니다. (1 ≤ N ≤ 100, -10,000 ≤ 정수 ≤ 10,000)",
+    "output": "N개의 정수 중 가장 큰 수를 출력합니다.",
+    "starter": "# 개수와 수들을 입력받아 가장 큰 수를 출력해 보세요.\n",
+    "modelAnswer": "n = int(input())\nnums = list(map(int, input().split()))\nprint(max(nums))",
+    "isPublic": true,
+    "testCases": [
+      { "input": "5\n3 9 -2 7 1", "output": "9", "isExample": true },
+      { "input": "4\n-8 -3 -10 -5", "output": "-3", "isExample": true },
+      { "input": "1\n42", "output": "42", "isExample": false },
+      { "input": "3\n0 0 0", "output": "0", "isExample": false },
+      { "input": "6\n100 -100 88 12 99 4", "output": "100", "isExample": false }
+    ]
+  },
+  {
+    "id": "p004",
+    "title": "거꾸로 읽어도 같은 글자",
+    "level": "기초",
+    "topic": "문자열",
+    "intro": "단어를 거꾸로 읽어도 똑같은 단어를 회문이라고 해요.\n주어진 단어가 회문이면 \"yes\", 아니면 \"no\"를 출력해 주세요.",
+    "input": "첫째 줄에 알파벳 소문자로 된 단어가 주어집니다. (길이 1~100)",
+    "output": "회문이면 yes, 아니면 no를 출력합니다.",
+    "starter": "# 문자열을 뒤집어 원래 문자열과 비교해 보세요.\n",
+    "modelAnswer": "word = input().strip()\nprint(\"yes\" if word == word[::-1] else \"no\")",
+    "isPublic": true,
+    "testCases": [
+      { "input": "level", "output": "yes", "isExample": true },
+      { "input": "python", "output": "no", "isExample": true },
+      { "input": "a", "output": "yes", "isExample": false },
+      { "input": "abba", "output": "yes", "isExample": false },
+      { "input": "hello", "output": "no", "isExample": false }
+    ]
+  },
+  {
+    "id": "p005",
+    "title": "구구단 한 줄 출력",
+    "level": "기초",
+    "topic": "반복문",
+    "intro": "원하는 단의 구구단을 출력해 봅시다.\n정수 N이 주어지면 N단을 1부터 9까지 차례대로 출력해 주세요.",
+    "input": "첫째 줄에 2 이상 9 이하의 정수 N이 주어집니다.",
+    "output": "각 줄에 \"N x i = 결과\" 형식으로 출력합니다. x는 알파벳 소문자 x입니다.",
+    "starter": "# 반복문으로 구구단을 출력해 보세요.\n",
+    "modelAnswer": "n = int(input())\nfor i in range(1, 10):\n    print(f\"{n} x {i} = {n * i}\")",
+    "isPublic": true,
+    "testCases": [
+      { "input": "3", "output": "3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27", "isExample": true },
+      { "input": "2", "output": "2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n2 x 6 = 12\n2 x 7 = 14\n2 x 8 = 16\n2 x 9 = 18", "isExample": false },
+      { "input": "9", "output": "9 x 1 = 9\n9 x 2 = 18\n9 x 3 = 27\n9 x 4 = 36\n9 x 5 = 45\n9 x 6 = 54\n9 x 7 = 63\n9 x 8 = 72\n9 x 9 = 81", "isExample": false }
+    ]
+  },
+  {
+    "id": "p006",
+    "title": "약수의 개수",
+    "level": "기초",
+    "topic": "반복문",
+    "intro": "어떤 수를 나누어떨어지게 하는 수를 약수라고 해요.\n자연수 N이 주어질 때, N의 약수가 모두 몇 개인지 출력해 주세요.",
+    "input": "첫째 줄에 자연수 N이 주어집니다. (1 ≤ N ≤ 10,000)",
+    "output": "N의 약수의 개수를 출력합니다.",
+    "starter": "# 1부터 N까지 나누어떨어지는 수를 세어 보세요.\n",
+    "modelAnswer": "n = int(input())\ncount = 0\nfor i in range(1, n + 1):\n    if n % i == 0:\n        count += 1\nprint(count)",
+    "isPublic": true,
+    "testCases": [
+      { "input": "12", "output": "6", "isExample": true },
+      { "input": "7", "output": "2", "isExample": true },
+      { "input": "1", "output": "1", "isExample": false },
+      { "input": "36", "output": "9", "isExample": false },
+      { "input": "100", "output": "9", "isExample": false }
+    ]
+  },
+  {
+    "id": "p007",
+    "title": "별 계단 만들기",
+    "level": "기초",
+    "topic": "반복문",
+    "intro": "첫째 줄에 높이 N이 주어집니다.\n첫 줄에는 별 한 개, 다음 줄에는 별 두 개처럼 별을 한 개씩 늘려 계단을 출력해 주세요.",
+    "input": "첫째 줄에 1 이상 20 이하의 정수 N이 주어집니다.",
+    "output": "N줄에 걸쳐 별(*)을 출력합니다. 별 사이에는 공백이 없습니다.",
+    "starter": "# 반복문으로 별을 한 줄씩 출력해 보세요.\n",
+    "modelAnswer": "n = int(input())\nfor i in range(1, n + 1):\n    print(\"*\" * i)",
+    "isPublic": true,
+    "testCases": [
+      { "input": "4", "output": "*\n**\n***\n****", "isExample": true },
+      { "input": "2", "output": "*\n**", "isExample": true },
+      { "input": "1", "output": "*", "isExample": false },
+      { "input": "6", "output": "*\n**\n***\n****\n*****\n******", "isExample": false }
+    ]
+  },
+  {
+    "id": "p008",
+    "title": "평균 점수와 등급",
+    "level": "도전",
+    "topic": "조건문 · 계산",
+    "intro": "네 과목의 점수가 주어집니다. 평균 점수를 소수 첫째 자리까지 출력하고, 평균에 맞는 등급도 출력해 주세요.",
+    "input": "첫째 줄에 0 이상 100 이하인 정수 점수 네 개가 공백으로 구분되어 주어집니다.",
+    "output": "첫째 줄에 평균을 소수 첫째 자리까지 출력합니다.\n둘째 줄에 평균이 90 이상이면 A, 80 이상이면 B, 70 이상이면 C, 그 외에는 D를 출력합니다.",
+    "starter": "# 네 점수의 평균과 등급을 계산해 보세요.\n",
+    "modelAnswer": "scores = list(map(int, input().split()))\naverage = sum(scores) / 4\nif average >= 90:\n    grade = \"A\"\nelif average >= 80:\n    grade = \"B\"\nelif average >= 70:\n    grade = \"C\"\nelse:\n    grade = \"D\"\nprint(f\"{average:.1f}\")\nprint(grade)",
+    "isPublic": true,
+    "testCases": [
+      { "input": "90 80 70 100", "output": "85.0\nB", "isExample": true },
+      { "input": "50 60 70 80", "output": "65.0\nD", "isExample": true },
+      { "input": "100 100 100 100", "output": "100.0\nA", "isExample": false },
+      { "input": "80 80 80 80", "output": "80.0\nB", "isExample": false },
+      { "input": "70 70 70 70", "output": "70.0\nC", "isExample": false }
+    ]
+  },
+  {
+    "id": "p009",
+    "title": "피보나치 수",
+    "level": "도전",
+    "topic": "반복문 · 수열",
+    "intro": "피보나치 수열은 앞의 두 수를 더해 다음 수를 만드는 수열이에요.\n0번째 수는 0, 1번째 수는 1입니다. N이 주어질 때 N번째 피보나치 수를 출력해 주세요.",
+    "input": "첫째 줄에 0 이상 30 이하의 정수 N이 주어집니다.",
+    "output": "N번째 피보나치 수를 출력합니다.",
+    "starter": "# 반복문으로 피보나치 수를 구해 보세요.\n",
+    "modelAnswer": "n = int(input())\na, b = 0, 1\nfor _ in range(n):\n    a, b = b, a + b\nprint(a)",
+    "isPublic": true,
+    "testCases": [
+      { "input": "7", "output": "13", "isExample": true },
+      { "input": "0", "output": "0", "isExample": true },
+      { "input": "1", "output": "1", "isExample": false },
+      { "input": "10", "output": "55", "isExample": false },
+      { "input": "30", "output": "832040", "isExample": false }
+    ]
+  },
+  {
+    "id": "p010",
+    "title": "문자 속 모음 세기",
+    "level": "도전",
+    "topic": "문자열 · 반복문",
+    "intro": "영어 단어에 a, e, i, o, u가 몇 번 들어 있는지 세어 봅시다.\n대문자와 소문자는 같은 글자로 취급합니다.",
+    "input": "첫째 줄에 알파벳으로만 이루어진 단어가 주어집니다. (길이 1~100)",
+    "output": "모음(a, e, i, o, u)의 개수를 출력합니다.",
+    "starter": "# 대소문자를 구분하지 않고 모음 개수를 세어 보세요.\n",
+    "modelAnswer": "word = input().lower()\ncount = sum(1 for char in word if char in \"aeiou\")\nprint(count)",
+    "isPublic": true,
+    "testCases": [
+      { "input": "education", "output": "5", "isExample": true },
+      { "input": "PYTHON", "output": "1", "isExample": true },
+      { "input": "rhythm", "output": "0", "isExample": false },
+      { "input": "AEIOU", "output": "5", "isExample": false },
+      { "input": "banana", "output": "3", "isExample": false }
+    ]
+  }
+]

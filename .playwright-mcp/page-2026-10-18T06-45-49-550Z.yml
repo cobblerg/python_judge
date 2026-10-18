@@ -1,0 +1,90 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - button "학급 현황" [ref=e36] [cursor=pointer]
+    - button "로그아웃" [ref=e37] [cursor=pointer]
+  - main [ref=e38]:
+    - generic [ref=e39]:
+      - generic [ref=e40]:
+        - paragraph [ref=e41]: TEACHER SPACE
+        - heading "학급 풀이 현황" [level=1] [ref=e796]
+        - paragraph [ref=e43]: 마지막 활동 2026. 10. 18. 오전 6:45:22 · 학생별 진행 상황을 확인할 수 있어요.
+      - generic [ref=e44]:
+        - button "학급 현황" [ref=e45] [cursor=pointer]
+        - button "문제 관리" [ref=e46] [cursor=pointer]
+        - button "새로고침" [ref=e797] [cursor=pointer]
+    - generic [ref=e48]:
+      - region "학급 요약" [ref=e49]:
+        - generic [ref=e50]:
+          - text: 학생 계정
+          - strong [ref=e51]: "3"
+        - generic [ref=e52]:
+          - text: 해결한 문제
+          - strong [ref=e53]: "1"
+        - generic [ref=e54]:
+          - text: 평균 진행률
+          - strong [ref=e55]: 3%
+      - generic [ref=e56]:
+        - heading "학생별 진행" [level=2] [ref=e57]
+        - generic [ref=e58]: 문제별 해결 여부
+      - generic [ref=e59]:
+        - article [ref=e798]:
+          - generic [ref=e799]:
+            - generic [ref=e800]: "1"
+            - generic [ref=e801]:
+              - generic [ref=e802]: 학생 1
+              - generic [ref=e803]: student01
+            - generic [ref=e804]: 0 / 11
+          - generic [ref=e806]:
+            - generic "두 수의 합" [ref=e807]: "01"
+            - generic "짝수일까 홀수일까" [ref=e808]: "02"
+            - generic "가장 큰 수 찾기" [ref=e809]: "03"
+            - generic "거꾸로 읽어도 같은 글자" [ref=e810]: "04"
+            - generic "구구단 한 줄 출력" [ref=e811]: "05"
+            - generic "약수의 개수" [ref=e812]: "06"
+            - generic "별 계단 만들기" [ref=e813]: "07"
+            - generic "평균 점수와 등급" [ref=e814]: "08"
+            - generic "피보나치 수" [ref=e815]: "09"
+            - generic "문자 속 모음 세기" [ref=e816]: "10"
+            - generic "임시 편집 확인" [ref=e817]: "11"
+        - article [ref=e818]:
+          - generic [ref=e819]:
+            - generic [ref=e820]: "2"
+            - generic [ref=e821]:
+              - generic [ref=e822]: 학생 2
+              - generic [ref=e823]: student02
+            - generic [ref=e824]: 1 / 11
+          - generic [ref=e827]:
+            - generic "두 수의 합" [ref=e828]: "01"
+            - generic "짝수일까 홀수일까" [ref=e829]: "02"
+            - generic "가장 큰 수 찾기" [ref=e830]: "03"
+            - generic "거꾸로 읽어도 같은 글자" [ref=e831]: "04"
+            - generic "구구단 한 줄 출력" [ref=e832]: "05"
+            - generic "약수의 개수" [ref=e833]: "06"
+            - generic "별 계단 만들기" [ref=e834]: "07"
+            - generic "평균 점수와 등급" [ref=e835]: "08"
+            - generic "피보나치 수" [ref=e836]: "09"
+            - generic "문자 속 모음 세기" [ref=e837]: "10"
+            - generic "임시 편집 확인" [ref=e838]: ✓
+        - article [ref=e839]:
+          - generic [ref=e840]:
+            - generic [ref=e841]: "3"
+            - generic [ref=e842]:
+              - generic [ref=e843]: 학생 3
+              - generic [ref=e844]: student03
+            - generic [ref=e845]: 0 / 11
+          - generic [ref=e847]:
+            - generic "두 수의 합" [ref=e848]: "01"
+            - generic "짝수일까 홀수일까" [ref=e849]: "02"
+            - generic "가장 큰 수 찾기" [ref=e850]: "03"
+            - generic "거꾸로 읽어도 같은 글자" [ref=e851]: "04"
+            - generic "구구단 한 줄 출력" [ref=e852]: "05"
+            - generic "약수의 개수" [ref=e853]: "06"
+            - generic "별 계단 만들기" [ref=e854]: "07"
+            - generic "평균 점수와 등급" [ref=e855]: "08"
+            - generic "피보나치 수" [ref=e856]: "09"
+            - generic "문자 속 모음 세기" [ref=e857]: "10"
+            - generic "임시 편집 확인" [ref=e858]: "11"
+  - status: 담당 선생님 계정으로 로그인했어요.

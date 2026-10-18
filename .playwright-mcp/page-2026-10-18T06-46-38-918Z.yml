@@ -1,0 +1,105 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - generic [ref=e610]:
+      - generic: 내 진행
+      - strong [ref=e612]: 0 / 9
+    - button "기록 초기화" [ref=e613] [cursor=pointer]
+    - button "로그아웃" [ref=e37] [cursor=pointer]
+  - main [ref=e614]:
+    - complementary [ref=e615]:
+      - navigation "문제 목록" [ref=e616]:
+        - 'button "문제 1: 짝수일까 홀수일까" [ref=e1175] [cursor=pointer]':
+          - generic [ref=e1176]: "01"
+        - 'button "문제 2: 가장 큰 수 찾기" [ref=e1177] [cursor=pointer]':
+          - generic [ref=e1178]: "02"
+        - 'button "문제 3: 거꾸로 읽어도 같은 글자" [ref=e1179] [cursor=pointer]':
+          - generic [ref=e1180]: "03"
+        - 'button "문제 4: 구구단 한 줄 출력" [ref=e1181] [cursor=pointer]':
+          - generic [ref=e1182]: "04"
+        - 'button "문제 5: 약수의 개수" [ref=e1183] [cursor=pointer]':
+          - generic [ref=e1184]: "05"
+        - 'button "문제 6: 별 계단 만들기" [ref=e1185] [cursor=pointer]':
+          - generic [ref=e1186]: "06"
+        - 'button "문제 7: 평균 점수와 등급" [ref=e1187] [cursor=pointer]':
+          - generic [ref=e1188]: "07"
+        - 'button "문제 8: 피보나치 수" [ref=e1189] [cursor=pointer]':
+          - generic [ref=e1190]: "08"
+        - 'button "문제 9: 문자 속 모음 세기" [ref=e1191] [cursor=pointer]':
+          - generic [ref=e1192]: "09"
+    - generic [ref=e639]:
+      - generic [ref=e1193]:
+        - generic [ref=e1194]: PROBLEM 01
+        - generic [ref=e1195]: 입문
+        - generic [ref=e1196]: 조건문
+      - heading "짝수일까 홀수일까" [level=1] [ref=e1197]
+      - paragraph [ref=e1198]: 자연수 N이 주어집니다. N이 짝수라면 "짝수", 홀수라면 "홀수"를 출력하는 프로그램을 작성해 주세요.
+      - heading "입력" [level=2] [ref=e1199]
+      - paragraph [ref=e1200]: 첫째 줄에 자연수 N이 주어집니다. (1 ≤ N ≤ 1,000,000)
+      - heading "출력" [level=2] [ref=e1201]
+      - paragraph [ref=e1202]: 짝수이면 even, 홀수이면 odd를 출력합니다.
+      - heading "예제" [level=2] [ref=e1203]
+      - generic [ref=e1204]:
+        - generic [ref=e1205]: 예제 1
+        - generic [ref=e1206]:
+          - generic [ref=e1207]:
+            - generic [ref=e1208]: 입력
+            - generic [ref=e1209]: "12"
+          - generic [ref=e1210]:
+            - generic [ref=e1211]: 출력
+            - generic [ref=e1212]: even
+      - generic [ref=e1213]:
+        - generic [ref=e1214]: 예제 2
+        - generic [ref=e1215]:
+          - generic [ref=e1216]:
+            - generic [ref=e1217]: 입력
+            - generic [ref=e1218]: "7"
+          - generic [ref=e1219]:
+            - generic [ref=e1220]: 출력
+            - generic [ref=e1221]: odd
+      - paragraph [ref=e1222]: 출력의 앞뒤 공백은 무시하지만, 줄바꿈과 출력 내용은 정확히 확인해요.
+    - region "Python 코드 편집기" [ref=e670]:
+      - generic [ref=e671]:
+        - generic [ref=e672]: 코드 편집기
+        - generic [ref=e673]: main.py
+        - generic [ref=e674]: Python 3
+      - generic [ref=e676]:
+        - generic [ref=e677]:
+          - generic [ref=e1223]: "1"
+          - generic [ref=e1224]: "2"
+        - textbox "Python 코드 입력" [ref=e680]:
+          - /placeholder: "# 입력을 읽고 결과를 출력해 보세요."
+          - text: "# 짝수인지 홀수인지 판별해 보세요."
+      - generic [ref=e681]:
+        - paragraph [ref=e682]:
+          - generic [ref=e683]: Tab
+          - text: 들여쓰기
+          - generic [ref=e684]: ·
+          - text: 입력은 문제 설명의 형식을 따라주세요
+        - generic [ref=e685]:
+          - button "코드 제출" [ref=e686] [cursor=pointer]:
+            - img [ref=e687]
+            - generic [ref=e689]: 코드 제출
+          - button "코드 비우기" [ref=e690] [cursor=pointer]
+          - button "모범답안" [ref=e691] [cursor=pointer]
+          - button "다음 문제 →" [ref=e692] [cursor=pointer]
+      - generic [ref=e693]:
+        - generic [ref=e694]:
+          - generic [ref=e695]: 채점 결과
+          - generic [ref=e696]: 실행 결과가 여기에 표시돼요
+        - generic [ref=e1225]:
+          - generic [ref=e1226]: ">_"
+          - generic [ref=e1227]: 코드를 작성하고 제출 버튼을 눌러보세요.
+      - region "AI 학습 도우미" [ref=e701]:
+        - generic [ref=e702]:
+          - generic [ref=e703]: AI
+          - generic [ref=e704]: 학습 도우미
+          - generic [ref=e705]: 문제와 작성 코드가 AI에 전달돼요
+        - generic [ref=e706]:
+          - button "힌트 받기" [ref=e707] [cursor=pointer]
+          - button "오류 살펴보기" [disabled] [ref=e708]
+          - button "예제 실행 추적" [ref=e709] [cursor=pointer]
+        - generic [ref=e710]: 막히는 순간에 버튼을 눌러 도움을 받아보세요. 완성된 정답 코드는 제공하지 않아요.
+  - status: 학생 3 계정으로 로그인했어요.

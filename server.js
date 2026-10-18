@@ -11,6 +11,8 @@ const port = Number(process.env.PORT || 3000);
 const privateDir = path.join(__dirname, 'private-data');
 const studentsDbPath = path.join(privateDir, 'students.db.json');
 const teachersDbPath = path.join(privateDir, 'teachers.db.json');
+const problemsDbPath = path.join(privateDir, 'problems.db.json');
+const problemSeedPath = path.join(__dirname, 'problem-seed.json');
 const sessionSecretPath = path.join(privateDir, 'session.secret');
 const cookieName = 'codesanchaek_session';
 let sessionSecret;
@@ -20,7 +22,7 @@ const client = process.env.OPENAI_API_KEY
 const requestCounts = new Map();
 const writeQueues = new Map();
 
-app.use(express.json({ limit: '24kb' }));
+app.use(express.json({ limit: '2mb' }));
 app.set('trust proxy', 1);
 
 function makeAccount(username, displayName, password, role) {
@@ -37,11 +39,11 @@ function makeAccount(username, displayName, password, role) {
   };
 }
 
-async function ensureDatabase(filePath, accounts) {
+async function ensureDatabase(filePath, initialValue) {
   try {
     await fs.access(filePath);
   } catch {
-    await fs.writeFile(filePath, JSON.stringify({ accounts }, null, 2), { flag: 'wx', mode: 0o600 });
+    await fs.writeFile(filePath, JSON.stringify(initialValue, null, 2), { flag: 'wx', mode: 0o600 });
   }
 }
 
@@ -114,6 +116,120 @@ function publicAccount(account) {
   return { username: account.username, displayName: account.displayName, role: account.role };
 }
 
+function publicProblem(problem) {
+  const { modelAnswer, ...studentProblem } = problem;
+  return studentProblem;
+}
+
+function validateProblem(input, id, existing = null) {
+  const fields = ['title', 'level', 'topic', 'intro', 'input', 'output', 'starter', 'modelAnswer'];
+  const limits = { title: 120, level: 30, topic: 100, intro: 4000, input: 2500, output: 2500, starter: 12000, modelAnswer: 12000 };
+  if (!input || typeof input !== 'object' || fields.some((field) => typeof input[field] !== 'string' || input[field].length > limits[field])) {
+    return { error: '문제 설명과 코드 항목을 확인해 주세요.' };
+  }
+  if (!input.title.trim() || !input.intro.trim() || !Array.isArray(input.testCases) || input.testCases.length < 1 || input.testCases.length > 100) {
+    return { error: '문제 제목, 본문, 테스트케이스를 하나 이상 입력해 주세요.' };
+  }
+  if (!input.modelAnswer.trim()) return { error: '모범 답안 코드를 입력해 주세요.' };
+  if (typeof input.isPublic !== 'boolean' || input.testCases.some((testCase) =>
+    !testCase || typeof testCase.input !== 'string' || typeof testCase.output !== 'string' ||
+    testCase.input.length > 8000 || testCase.output.length > 8000 || typeof testCase.isExample !== 'boolean'
+  )) {
+    return { error: '공개 설정과 테스트케이스 입력·출력을 확인해 주세요.' };
+  }
+  if (input.isPublic && !input.testCases.some((testCase) => testCase.isExample)) {
+    return { error: '공개 문제에는 공개 예제를 하나 이상 표시해 주세요.' };
+  }
+  return {
+    value: {
+      id,
+      title: input.title.trim(),
+      level: input.level.trim(),
+      topic: input.topic.trim(),
+      intro: input.intro.trim(),
+      input: input.input.trim(),
+      output: input.output.trim(),
+      starter: input.starter,
+      modelAnswer: input.modelAnswer,
+      isPublic: input.isPublic,
+      testCases: input.testCases.map(({ input: testInput, output, isExample }) => ({ input: testInput, output, isExample })),
+      createdAt: existing?.createdAt || new Date().toISOString(),
+      updatedAt: new Date().toISOString()
+    }
+  };
+}
+
+app.get('/api/problems', requireRole('student'), async (_req, res) => {
+  const database = await readDatabase(problemsDbPath);
+  res.json({ problems: database.problems.filter((problem) => problem.isPublic).map(publicProblem) });
+});
+
+app.get('/api/problems/:id/answer', requireRole('student'), async (req, res) => {
+  const database = await readDatabase(problemsDbPath);
+  const problem = database.problems.find((item) => item.id === req.params.id && item.isPublic);
+  if (!problem) return res.status(404).json({ error: '공개된 문제를 찾을 수 없습니다.' });
+  res.json({ modelAnswer: problem.modelAnswer });
+});
+
+app.get('/api/teacher/problems', requireRole('teacher'), async (_req, res) => {
+  const database = await readDatabase(problemsDbPath);
+  res.json({ problems: database.problems });
+});
+
+app.post('/api/teacher/problems', requireRole('teacher'), async (req, res) => {
+  const id = crypto.randomUUID();
+  const { value, error } = validateProblem(req.body, id);
+  if (error) return res.status(400).json({ error });
+  await updateDatabase(problemsDbPath, (database) => database.problems.push(value));
+  res.status(201).json({ problem: value });
+});
+
+app.put('/api/teacher/problems/:id', requireRole('teacher'), async (req, res) => {
+  let updatedProblem = null;
+  let validationError = null;
+  await updateDatabase(problemsDbPath, (database) => {
+    const index = database.problems.findIndex((item) => item.id === req.params.id);
+    if (index < 0) return;
+    const validation = validateProblem(req.body, req.params.id, database.problems[index]);
+    if (validation.error) validationError = validation.error;
+    else database.problems[index] = updatedProblem = validation.value;
+  });
+  if (validationError) return res.status(400).json({ error: validationError });
+  if (!updatedProblem) return res.status(404).json({ error: '문제를 찾을 수 없습니다.' });
+  res.json({ problem: updatedProblem });
+});
+
+app.patch('/api/teacher/problems/:id/visibility', requireRole('teacher'), async (req, res) => {
+  let problem = null;
+  await updateDatabase(problemsDbPath, (database) => {
+    problem = database.problems.find((item) => item.id === req.params.id) || null;
+    if (problem && typeof req.body?.isPublic === 'boolean' && (!req.body.isPublic || problem.testCases.some((testCase) => testCase.isExample))) {
+      problem.isPublic = req.body.isPublic;
+      problem.updatedAt = new Date().toISOString();
+    }
+  });
+  if (!problem) return res.status(404).json({ error: '문제를 찾을 수 없습니다.' });
+  if (typeof req.body?.isPublic !== 'boolean') return res.status(400).json({ error: '공개 여부를 확인해 주세요.' });
+  if (req.body.isPublic && !problem.isPublic) return res.status(400).json({ error: '공개 예제를 하나 이상 지정한 뒤 공개해 주세요.' });
+  res.json({ problem });
+});
+
+app.delete('/api/teacher/problems/:id', requireRole('teacher'), async (req, res) => {
+  let deleted = false;
+  await updateDatabase(problemsDbPath, (database) => {
+    const remaining = database.problems.filter((item) => item.id !== req.params.id);
+    deleted = remaining.length !== database.problems.length;
+    database.problems = remaining;
+  });
+  if (!deleted) return res.status(404).json({ error: '문제를 찾을 수 없습니다.' });
+  await updateDatabase(studentsDbPath, (database) => {
+    database.accounts.forEach((account) => {
+      account.solvedProblems = (account.solvedProblems || []).filter((id) => id !== req.params.id);
+    });
+  });
+  res.json({ ok: true });
+});
+
 app.post('/api/auth/login', async (req, res) => {
   const { role, username, password } = req.body || {};
   const filePath = roleDatabase(role);
@@ -165,7 +281,9 @@ app.get('/api/student/progress', requireRole('student'), async (req, res) => {
 
 app.put('/api/student/progress', requireRole('student'), async (req, res) => {
   const solvedProblems = req.body?.solvedProblems;
-  if (!Array.isArray(solvedProblems) || solvedProblems.length > 10 || solvedProblems.some((value) => !Number.isInteger(value) || value < 0 || value > 9)) {
+  const problemDatabase = await readDatabase(problemsDbPath);
+  const knownIds = new Set(problemDatabase.problems.map((problem) => problem.id));
+  if (!Array.isArray(solvedProblems) || solvedProblems.length > 200 || solvedProblems.some((value) => typeof value !== 'string' || !knownIds.has(value))) {
     return res.status(400).json({ error: '풀이 기록 형식이 올바르지 않습니다.' });
   }
   const uniqueSolved = [...new Set(solvedProblems)];
@@ -297,15 +415,17 @@ async function start() {
     if (error.code !== 'EEXIST') throw error;
   }
   sessionSecret = await fs.readFile(sessionSecretPath);
-  await ensureDatabase(studentsDbPath, [
+  await ensureDatabase(studentsDbPath, { accounts: [
     makeAccount('student01', '학생 1', 'learn1010', 'student'),
     makeAccount('student02', '학생 2', 'learn2020', 'student'),
     makeAccount('student03', '학생 3', 'learn3030', 'student')
-  ]);
-  await ensureDatabase(teachersDbPath, [
+  ] });
+  await ensureDatabase(teachersDbPath, { accounts: [
     makeAccount('teacher', '담당 선생님', 'teach2026', 'teacher')
-  ]);
-  await Promise.all([studentsDbPath, teachersDbPath, sessionSecretPath].map((filePath) => fs.chmod(filePath, 0o600)));
+  ] });
+  const problemSeed = JSON.parse(await fs.readFile(problemSeedPath, 'utf8'));
+  await ensureDatabase(problemsDbPath, { problems: problemSeed });
+  await Promise.all([studentsDbPath, teachersDbPath, problemsDbPath, sessionSecretPath].map((filePath) => fs.chmod(filePath, 0o600)));
   app.listen(port, '0.0.0.0', () => {
     console.log(`CodeSanchaek listening on ${port}`);
   });
