@@ -1,0 +1,114 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - generic [ref=e8]: 파이썬 첫걸음 · 문제 풀이
+    - generic [ref=e9]:
+      - generic [ref=e10]: 내 진행
+      - strong [ref=e12]: 2 / 10
+    - button "기록 초기화" [ref=e13] [cursor=pointer]
+  - main [ref=e14]:
+    - complementary [ref=e15]:
+      - paragraph [ref=e16]: 연습 코스
+      - heading "기초 문제 10" [level=2] [ref=e17]
+      - navigation "문제 목록" [ref=e18]:
+        - 'button "문제 1: 두 수의 합, 해결" [ref=e19] [cursor=pointer]':
+          - generic [ref=e20]: 01 ✓
+          - generic [ref=e21]: 두 수의 합
+        - 'button "문제 2: 짝수일까 홀수일까, 해결" [ref=e22] [cursor=pointer]':
+          - generic [ref=e23]: 02 ✓
+          - generic [ref=e24]: 짝수일까 홀수일까
+        - 'button "문제 3: 가장 큰 수 찾기" [ref=e25] [cursor=pointer]':
+          - generic [ref=e26]: "03"
+          - generic [ref=e27]: 가장 큰 수 찾기
+        - 'button "문제 4: 거꾸로 읽어도 같은 글자" [ref=e28] [cursor=pointer]':
+          - generic [ref=e29]: "04"
+          - generic [ref=e30]: 거꾸로 읽어도 같은 글자
+        - 'button "문제 5: 구구단 한 줄 출력" [ref=e31] [cursor=pointer]':
+          - generic [ref=e32]: "05"
+          - generic [ref=e33]: 구구단 한 줄 출력
+        - 'button "문제 6: 약수의 개수" [ref=e34] [cursor=pointer]':
+          - generic [ref=e35]: "06"
+          - generic [ref=e36]: 약수의 개수
+        - 'button "문제 7: 별 계단 만들기" [ref=e37] [cursor=pointer]':
+          - generic [ref=e38]: "07"
+          - generic [ref=e39]: 별 계단 만들기
+        - 'button "문제 8: 평균 점수와 등급" [ref=e40] [cursor=pointer]':
+          - generic [ref=e41]: "08"
+          - generic [ref=e42]: 평균 점수와 등급
+        - 'button "문제 9: 피보나치 수" [ref=e43] [cursor=pointer]':
+          - generic [ref=e44]: "09"
+          - generic [ref=e45]: 피보나치 수
+        - 'button "문제 10: 문자 속 모음 세기" [ref=e46] [cursor=pointer]':
+          - generic [ref=e47]: "10"
+          - generic [ref=e48]: 문자 속 모음 세기
+      - generic [ref=e49]:
+        - text: 오늘의 한 걸음
+        - strong [ref=e50]: 작게 나누어 생각하기
+        - paragraph [ref=e51]:
+          - text: 입력을 읽고, 규칙을 찾고,
+          - text: 결과를 출력하면 돼요.
+    - generic [ref=e52]:
+      - generic [ref=e53]:
+        - generic [ref=e54]: PROBLEM 01
+        - generic [ref=e55]: 입문
+        - generic [ref=e56]: 입력과 출력
+      - heading "두 수의 합" [level=1] [ref=e57]
+      - paragraph [ref=e58]: 민수는 두 정수를 더하는 프로그램을 만들고 싶어요. 두 정수 A와 B가 주어질 때, A와 B의 합을 출력하는 프로그램을 작성해 주세요.
+      - heading "입력" [level=2] [ref=e59]
+      - paragraph [ref=e60]: 첫째 줄에 정수 A와 B가 공백으로 구분되어 주어집니다. (-1,000 ≤ A, B ≤ 1,000)
+      - heading "출력" [level=2] [ref=e61]
+      - paragraph [ref=e62]: A와 B의 합을 출력합니다.
+      - heading "예제" [level=2] [ref=e63]
+      - generic [ref=e64]:
+        - generic [ref=e65]: 예제 1
+        - generic [ref=e66]:
+          - generic [ref=e67]:
+            - generic [ref=e68]: 입력
+            - generic [ref=e69]: 3 5
+          - generic [ref=e70]:
+            - generic [ref=e71]: 출력
+            - generic [ref=e72]: "8"
+      - generic [ref=e73]:
+        - generic [ref=e74]: 예제 2
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - generic [ref=e77]: 입력
+            - generic [ref=e78]: "-7 2"
+          - generic [ref=e79]:
+            - generic [ref=e80]: 출력
+            - generic [ref=e81]: "-5"
+      - paragraph [ref=e82]: 출력의 앞뒤 공백은 무시하지만, 줄바꿈과 출력 내용은 정확히 확인해요.
+    - region "Python 코드 편집기" [ref=e83]:
+      - generic [ref=e84]:
+        - generic [ref=e85]: 코드 편집기
+        - generic [ref=e86]: main.py
+        - generic [ref=e87]: Python 3
+      - generic [ref=e89]:
+        - generic [ref=e90]:
+          - generic [ref=e91]: "1"
+          - generic [ref=e92]: "2"
+        - textbox "Python 코드 입력" [ref=e93]:
+          - /placeholder: "# 입력을 읽고 결과를 출력해 보세요."
+          - text: "# 두 정수를 입력받아 합을 출력해 보세요."
+      - generic [ref=e94]:
+        - paragraph [ref=e95]:
+          - generic [ref=e96]: Tab
+          - text: 들여쓰기
+          - generic [ref=e97]: ·
+          - text: 입력은 문제 설명의 형식을 따라주세요
+        - generic [ref=e98]:
+          - button "코드 제출" [ref=e99] [cursor=pointer]:
+            - img [ref=e100]
+            - generic [ref=e102]: 코드 제출
+          - button "코드 비우기" [ref=e103] [cursor=pointer]
+          - button "다음 문제 →" [ref=e104] [cursor=pointer]
+      - generic [ref=e105]:
+        - generic [ref=e106]:
+          - generic [ref=e107]: 채점 결과
+          - generic [ref=e108]: 실행 결과가 여기에 표시돼요
+        - generic [ref=e110]:
+          - generic [ref=e111]: ">_"
+          - generic [ref=e112]: 코드를 작성하고 제출 버튼을 눌러보세요.
+  - status

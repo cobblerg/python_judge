@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f7f4">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23d7f36a'/%3E%3Cpath d='m15 12-7 8 7 8m10-16 7 8-7 8m-1-20-8 24' fill='none' stroke='%23244a35' stroke-linecap='round' stroke-linejoin='round' stroke-width='2.6'/%3E%3C/svg%3E">
+  <title>코드산책 | 파이썬 문제 연습</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{font-family:'Manrope','Noto Sans KR',sans-serif;color:#20251f;background:#f6f7f4;font-synthesis:none;text-rendering:optimizeLegibility;--ink:#20251f;--muted:#747c73;--line:#e4e8e0;--green:#236b4d;--lime:#d7f36a;--panel:#fff;--mono:'DM Mono',monospace}
+    *{box-sizing:border-box}body{margin:0;min-width:320px;height:100vh;overflow:hidden}button{font:inherit;color:inherit}button:focus-visible,textarea:focus-visible{outline:3px solid #9bc64d;outline-offset:2px}
+    .topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;padding:0 28px;gap:30px;position:relative;z-index:2}
+    .brand{display:flex;align-items:center;gap:10px;font-size:19px;font-weight:800;letter-spacing:-.7px;white-space:nowrap}.brand-mark{width:32px;height:32px;border-radius:10px;background:#d7f36a;display:grid;place-items:center;color:#244a35}.brand-mark svg{width:20px;height:20px}.top-divider{height:28px;width:1px;background:var(--line)}.course-label{font-size:13px;color:#697168;font-weight:600}.top-spacer{flex:1}.progress-label{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:10px}.progress-track{width:100px;height:6px;border-radius:6px;background:#edf0e9;overflow:hidden}.progress-fill{height:100%;width:0;background:#4a885c;transition:width .35s}.progress-label strong{font:500 12px var(--mono);color:#334538}.top-action{border:0;background:transparent;color:#485349;font-size:13px;font-weight:700;padding:10px 12px;border-radius:8px;cursor:pointer}.top-action:hover{background:#f3f5f0}
+    .workspace{height:calc(100vh - 68px);display:grid;grid-template-columns:232px minmax(350px,.91fr) minmax(420px,1.09fr);gap:0;max-width:1800px;margin:auto}.sidebar{background:#f6f7f4;border-right:1px solid var(--line);padding:25px 15px;overflow:auto}.side-kicker{margin:0 10px 9px;font-size:10px;font-weight:800;letter-spacing:1.2px;color:#8a9288}.side-title{margin:0 10px 22px;font-size:16px;letter-spacing:-.4px}.problem-list{display:flex;flex-direction:column;gap:4px}.problem-link{height:46px;border:0;background:transparent;border-radius:9px;display:flex;align-items:center;text-align:left;gap:11px;padding:0 10px;cursor:pointer;color:#5c655c;transition:background .15s,color .15s;width:100%}.problem-link:hover{background:#ebeee8}.problem-link.active{background:#e7efdf;color:#234934;font-weight:700}.problem-number{font:500 11px var(--mono);width:21px;height:21px;border:1px solid #d9ded5;border-radius:6px;display:grid;place-items:center;flex:none}.problem-link.active .problem-number{background:#316a4b;color:white;border-color:#316a4b}.problem-link.solved .problem-number{font-size:0;background:#e4f4d8;border-color:#bddca9;position:relative}.problem-link.solved .problem-number:after{content:'✓';font:700 12px 'Noto Sans KR';color:#357343}.problem-link.active.solved .problem-number{background:#316a4b}.problem-link.active.solved .problem-number:after{color:white}.problem-link-title{font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.side-bottom{margin:28px 8px 0;padding:16px 13px;background:#eef1e9;border-radius:12px}.side-bottom-label{font-size:10px;color:#7d867a;font-weight:700;letter-spacing:.5px}.side-bottom strong{display:block;font-size:13px;margin:7px 0 4px}.side-bottom p{font-size:11px;line-height:1.6;color:#697367;margin:0}
+    .statement-panel{background:#fff;border-right:1px solid var(--line);overflow:auto;padding:29px 30px 48px}.problem-meta{display:flex;align-items:center;gap:8px;margin-bottom:14px}.problem-id{font:500 11px var(--mono);color:#7d877d}.difficulty{font-size:10px;font-weight:700;border-radius:20px;padding:4px 9px}.difficulty.easy{background:#edf6df;color:#497337}.difficulty.medium{background:#fff1d9;color:#94661d}.topic-tag{font-size:10px;color:#68746b;border:1px solid #e8ece5;padding:4px 8px;border-radius:20px}.problem-title{margin:0;font-size:25px;letter-spacing:-1.1px;line-height:1.3;font-weight:800}.problem-intro{font-size:13px;line-height:1.85;color:#59625a;margin:15px 0 23px;white-space:pre-line}.section-heading{font-size:12px;font-weight:800;margin:22px 0 9px;letter-spacing:-.2px}.section-copy{font-size:12px;line-height:1.8;color:#555f56;white-space:pre-line;margin:0}.example-card{background:#f5f7f3;border:1px solid #edf0ea;border-radius:9px;margin:10px 0 13px;overflow:hidden}.example-head{padding:8px 11px;border-bottom:1px solid #e8ece5;color:#687267;font-size:10px;font-weight:700}.example-body{display:grid;grid-template-columns:1fr 1fr}.example-col{padding:10px 11px;min-width:0}.example-col+.example-col{border-left:1px solid #e8ece5}.example-col span{display:block;font-size:9px;color:#8a9389;margin-bottom:6px;font-weight:700}.example-col pre{margin:0;font:11px/1.7 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;color:#2f3931}.note{font-size:11px;color:#6d776d;line-height:1.7;margin-top:12px;padding:10px 12px;border-left:2px solid #bddc8a;background:#f8faf5}
+    .editor-panel{background:#f8f9f7;display:flex;min-width:0;flex-direction:column;overflow:hidden}.editor-top{height:60px;flex:none;display:flex;align-items:center;padding:0 20px;border-bottom:1px solid var(--line);gap:10px}.editor-caption{font-size:12px;font-weight:800}.file-pill{font:10px var(--mono);padding:5px 8px;border-radius:6px;background:#eff1ec;color:#727b71}.editor-spacer{flex:1}.lang-pill{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:#4c574d}.python-dot{width:8px;height:8px;background:#477ba8;border-radius:50%;box-shadow:4px 3px 0 -1px #f1c94c}.editor-body{flex:1;min-height:190px;display:flex;overflow:hidden;background:#fff}.line-numbers{width:45px;flex:none;background:#fbfcfa;border-right:1px solid #eff1ed;padding:20px 12px 20px 0;text-align:right;color:#a9afa7;font:12px/1.8 var(--mono);user-select:none;overflow:hidden}.line-numbers span{display:block;height:21.6px}.code-input{flex:1;min-width:0;resize:none;border:0;outline:none!important;background:#fff;padding:20px 17px;color:#27342b;font:12px/1.8 var(--mono);tab-size:4;white-space:pre;overflow:auto}.code-input::placeholder{color:#a1aaa0}.editor-footer{padding:14px 18px 16px;border-top:1px solid var(--line);background:#fff;flex:none}.editor-hint{font-size:10px;color:#858d83;margin:0 0 12px;display:flex;align-items:center;gap:6px}.editor-hint kbd{font:10px var(--mono);border:1px solid #dfe3dc;border-bottom-width:2px;padding:1px 4px;border-radius:4px;background:#fafbf9;color:#616a61}.editor-actions{display:flex;align-items:center;gap:9px}.submit-button{height:42px;border:0;background:#286c4d;color:white;border-radius:8px;padding:0 17px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s,transform .15s}.submit-button:hover{background:#1f593e;transform:translateY(-1px)}.submit-button:disabled{background:#8eaa9b;cursor:wait;transform:none}.submit-button svg{width:15px;height:15px}.reset-button,.next-button{height:40px;background:#fff;border:1px solid #e0e5dc;border-radius:8px;padding:0 13px;font-size:11px;font-weight:700;color:#59645a;cursor:pointer}.reset-button:hover,.next-button:hover{background:#f4f6f1}.next-button{margin-left:auto;color:#315c40}.next-button:disabled{opacity:.4;cursor:not-allowed}
+    .result-panel{height:190px;flex:none;border-top:1px solid var(--line);background:#f9faf8;display:flex;flex-direction:column;min-height:120px}.result-top{height:42px;flex:none;display:flex;align-items:center;gap:9px;padding:0 18px;border-bottom:1px solid #ecefea}.result-top span:first-child{font-size:11px;font-weight:800}.result-subtitle{font-size:10px;color:#939a91}.result-body{padding:14px 18px;overflow:auto;flex:1}.result-empty{height:100%;display:flex;align-items:center;gap:11px;color:#8b938a;font-size:11px}.result-empty-mark{width:30px;height:30px;border-radius:8px;border:1px solid #e3e7e0;display:grid;place-items:center;color:#9ca59a;font:12px var(--mono)}.result-message{display:flex;align-items:flex-start;gap:10px;font-size:12px;font-weight:700}.result-icon{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:12px}.result-message.accepted{color:#286b48}.result-message.accepted .result-icon{background:#e4f3e5}.result-message.failed{color:#a64a3d}.result-message.failed .result-icon{background:#fbeae7}.result-message.running{color:#6d772d}.result-message.running .result-icon{background:#f2f5dd}.result-detail{font-size:10px;font-weight:500;color:#7b847b;margin-top:4px;line-height:1.6}.case-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}.case-chip{font:10px var(--mono);border-radius:5px;padding:5px 8px;background:#edf0eb;color:#697268}.case-chip.pass{background:#e6f3e5;color:#35734a}.case-chip.fail{background:#fae9e6;color:#aa4a3e}.case-chip.sample{border:1px solid #e4e8e0;background:white}.error-box{margin-top:8px;padding:8px 10px;border-radius:6px;background:#fff2ef;color:#9c4539;font:10px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
+    .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#27332a;color:white;padding:10px 16px;border-radius:8px;font-size:12px;transition:opacity .2s,transform .2s;z-index:5}.toast.show{opacity:1;transform:translate(-50%,0)}
+    @media(max-width:1120px){.workspace{grid-template-columns:205px minmax(310px,.9fr) minmax(360px,1.1fr)}.statement-panel{padding:25px 22px}.topbar{padding:0 20px}}
+    @media(max-width:850px){body{height:auto;min-height:100vh;overflow:auto}.topbar{height:60px;padding:0 15px;gap:14px}.course-label,.top-divider{display:none}.progress-label{font-size:0;gap:7px}.progress-track{width:70px}.progress-label strong{font-size:11px}.top-action{padding:9px 6px}.workspace{height:auto;min-height:calc(100vh - 60px);display:flex;flex-direction:column}.sidebar{order:0;border-right:0;border-bottom:1px solid var(--line);padding:13px 15px 12px;overflow:hidden}.side-kicker,.side-title,.side-bottom{display:none}.problem-list{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:2px}.problem-link{width:38px;height:38px;flex:none;justify-content:center;padding:0;border:1px solid #e3e7df;border-radius:9px;background:#fff}.problem-link.active{border-color:#b9d0aa}.problem-link-title{display:none}.problem-number{border:0;width:auto;height:auto;background:transparent!important;color:inherit!important}.problem-link.solved .problem-number{font-size:0}.statement-panel{order:1;border-right:0;padding:23px 20px 26px;max-height:none}.problem-title{font-size:23px}.problem-intro{margin-bottom:18px}.editor-panel{order:2;min-height:560px;border-top:1px solid var(--line)}.editor-body{min-height:300px}.result-panel{height:180px}.editor-top{padding:0 15px}.editor-footer{padding:12px 14px 14px}}
+    @media(max-width:460px){.brand{font-size:17px}.brand-mark{width:29px;height:29px}.top-action{font-size:11px}.statement-panel{padding:20px 16px}.example-col{padding:9px}.editor-actions{gap:6px;flex-wrap:wrap}.submit-button{padding:0 12px}.reset-button,.answer-button,.next-button{padding:0 9px;font-size:10px}.editor-footer{padding-inline:11px}.editor-hint{font-size:9px}}
+    .answer-button{height:40px;background:#f8fbf2;border:1px solid #d8e4c9;border-radius:8px;padding:0 13px;font-size:11px;font-weight:700;color:#45643c;cursor:pointer}.answer-button:hover{background:#eff6e5}
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand"><span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="m8.5 7-5 5 5 5M15.5 7l5 5-5 5M14 4l-4 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>코드산책</div>
+    <span class="top-divider"></span><span class="course-label">파이썬 첫걸음 · 문제 풀이</span><span class="top-spacer"></span>
+    <div class="progress-label"><span>내 진행</span><span class="progress-track"><span class="progress-fill" id="progressFill"></span></span><strong id="progressText">0 / 10</strong></div>
+    <button class="top-action" id="resetProgress" type="button">기록 초기화</button>
+  </header>
+  <main class="workspace">
+    <aside class="sidebar"><p class="side-kicker">연습 코스</p><h2 class="side-title">기초 문제 10</h2><nav class="problem-list" id="problemList" aria-label="문제 목록"></nav><div class="side-bottom"><span class="side-bottom-label">오늘의 한 걸음</span><strong>작게 나누어 생각하기</strong><p>입력을 읽고, 규칙을 찾고,<br>결과를 출력하면 돼요.</p></div></aside>
+    <section class="statement-panel" id="statementPanel" aria-live="polite"></section>
+    <section class="editor-panel" aria-label="Python 코드 편집기">
+      <div class="editor-top"><span class="editor-caption">코드 편집기</span><span class="file-pill">main.py</span><span class="editor-spacer"></span><span class="lang-pill"><span class="python-dot"></span>Python 3</span></div>
+      <div class="editor-body"><div class="line-numbers" id="lineNumbers" aria-hidden="true"></div><textarea class="code-input" id="codeInput" aria-label="Python 코드 입력" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="# 입력을 읽고 결과를 출력해 보세요."></textarea></div>
+      <div class="editor-footer"><p class="editor-hint"><kbd>Tab</kbd> 들여쓰기 <span>·</span> 입력은 문제 설명의 형식을 따라주세요</p><div class="editor-actions"><button class="submit-button" id="submitCode" type="button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>코드 제출</span></button><button class="reset-button" id="resetCode" type="button">코드 비우기</button><button class="answer-button" id="insertAnswer" type="button" title="현재 문제의 모범답안을 편집기에 넣습니다">모범답안</button><button class="next-button" id="nextProblem" type="button">다음 문제 →</button></div></div>
+      <section class="result-panel" aria-live="polite"><div class="result-top"><span>채점 결과</span><span class="result-subtitle" id="resultSubtitle">실행 결과가 여기에 표시돼요</span></div><div class="result-body" id="resultBody"><div class="result-empty"><span class="result-empty-mark">&gt;_</span><span>코드를 작성하고 제출 버튼을 눌러보세요.</span></div></div></section>
+    </section>
+  </main>
+  <div class="toast" id="toast" role="status"></div>
+  <script>
+    const problems = [
+      {title:'두 수의 합',level:'입문',topic:'입력과 출력',intro:'민수는 두 정수를 더하는 프로그램을 만들고 싶어요.\n두 정수 A와 B가 주어질 때, A와 B의 합을 출력하는 프로그램을 작성해 주세요.',input:'첫째 줄에 정수 A와 B가 공백으로 구분되어 주어집니다. (-1,000 ≤ A, B ≤ 1,000)',output:'A와 B의 합을 출력합니다.',examples:[['3 5','8'],['-7 2','-5']],tests:[['3 5','8'],['-7 2','-5'],['0 0','0'],['1000 1000','2000'],['-1000 999','-1']],starter:'# 두 정수를 입력받아 합을 출력해 보세요.\n'},
+      {title:'짝수일까 홀수일까',level:'입문',topic:'조건문',intro:'자연수 N이 주어집니다. N이 짝수라면 "짝수", 홀수라면 "홀수"를 출력하는 프로그램을 작성해 주세요.',input:'첫째 줄에 자연수 N이 주어집니다. (1 ≤ N ≤ 1,000,000)',output:'짝수이면 even, 홀수이면 odd를 출력합니다.',examples:[['12','even'],['7','odd']],tests:[['12','even'],['7','odd'],['1','odd'],['2','even'],['1000000','even']],starter:'# 짝수인지 홀수인지 판별해 보세요.\n'},
+      {title:'가장 큰 수 찾기',level:'입문',topic:'반복문',intro:'수들을 차례대로 살펴보며 가장 큰 수를 찾아봅시다.\n첫 줄에 수의 개수 N이 주어지고, 다음 줄에 N개의 정수가 주어집니다. 가장 큰 수를 출력해 주세요.',input:'첫째 줄에 정수 N이 주어집니다.\n둘째 줄에 N개의 정수가 공백으로 구분되어 주어집니다. (1 ≤ N ≤ 100, -10,000 ≤ 정수 ≤ 10,000)',output:'N개의 정수 중 가장 큰 수를 출력합니다.',examples:[['5\n3 9 -2 7 1','9'],['4\n-8 -3 -10 -5','-3']],tests:[['5\n3 9 -2 7 1','9'],['4\n-8 -3 -10 -5','-3'],['1\n42','42'],['3\n0 0 0','0'],['6\n100 -100 88 12 99 4','100']],starter:'# 개수와 수들을 입력받아 가장 큰 수를 출력해 보세요.\n'},
+      {title:'거꾸로 읽어도 같은 글자',level:'기초',topic:'문자열',intro:'단어를 거꾸로 읽어도 똑같은 단어를 회문이라고 해요.\n주어진 단어가 회문이면 "yes", 아니면 "no"를 출력해 주세요.',input:'첫째 줄에 알파벳 소문자로 된 단어가 주어집니다. (길이 1~100)',output:'회문이면 yes, 아니면 no를 출력합니다.',examples:[['level','yes'],['python','no']],tests:[['level','yes'],['python','no'],['a','yes'],['abba','yes'],['hello','no']],starter:'# 문자열을 뒤집어 원래 문자열과 비교해 보세요.\n'},
+      {title:'구구단 한 줄 출력',level:'기초',topic:'반복문',intro:'원하는 단의 구구단을 출력해 봅시다.\n정수 N이 주어지면 N단을 1부터 9까지 차례대로 출력해 주세요.',input:'첫째 줄에 2 이상 9 이하의 정수 N이 주어집니다.',output:'각 줄에 "N x i = 결과" 형식으로 출력합니다. x는 알파벳 소문자 x입니다.',examples:[['3','3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27']],tests:[['3','3 x 1 = 3\n3 x 2 = 6\n3 x 3 = 9\n3 x 4 = 12\n3 x 5 = 15\n3 x 6 = 18\n3 x 7 = 21\n3 x 8 = 24\n3 x 9 = 27'],['2','2 x 1 = 2\n2 x 2 = 4\n2 x 3 = 6\n2 x 4 = 8\n2 x 5 = 10\n2 x 6 = 12\n2 x 7 = 14\n2 x 8 = 16\n2 x 9 = 18'],['9','9 x 1 = 9\n9 x 2 = 18\n9 x 3 = 27\n9 x 4 = 36\n9 x 5 = 45\n9 x 6 = 54\n9 x 7 = 63\n9 x 8 = 72\n9 x 9 = 81']],starter:'# 반복문으로 구구단을 출력해 보세요.\n'},
+      {title:'약수의 개수',level:'기초',topic:'반복문',intro:'어떤 수를 나누어떨어지게 하는 수를 약수라고 해요.\n자연수 N이 주어질 때, N의 약수가 모두 몇 개인지 출력해 주세요.',input:'첫째 줄에 자연수 N이 주어집니다. (1 ≤ N ≤ 10,000)',output:'N의 약수의 개수를 출력합니다.',examples:[['12','6'],['7','2']],tests:[['12','6'],['7','2'],['1','1'],['36','9'],['100','9']],starter:'# 1부터 N까지 나누어떨어지는 수를 세어 보세요.\n'},
+      {title:'별 계단 만들기',level:'기초',topic:'반복문',intro:'첫째 줄에 높이 N이 주어집니다.\n첫 줄에는 별 한 개, 다음 줄에는 별 두 개처럼 별을 한 개씩 늘려 계단을 출력해 주세요.',input:'첫째 줄에 1 이상 20 이하의 정수 N이 주어집니다.',output:'N줄에 걸쳐 별(*)을 출력합니다. 별 사이에는 공백이 없습니다.',examples:[['4','*\n**\n***\n****'],['2','*\n**']],tests:[['4','*\n**\n***\n****'],['2','*\n**'],['1','*'],['6','*\n**\n***\n****\n*****\n******']],starter:'# 반복문으로 별을 한 줄씩 출력해 보세요.\n'},
+      {title:'평균 점수와 등급',level:'도전',topic:'조건문 · 계산',intro:'네 과목의 점수가 주어집니다. 평균 점수를 소수 첫째 자리까지 출력하고, 평균에 맞는 등급도 출력해 주세요.',input:'첫째 줄에 0 이상 100 이하인 정수 점수 네 개가 공백으로 구분되어 주어집니다.',output:'첫째 줄에 평균을 소수 첫째 자리까지 출력합니다.\n둘째 줄에 평균이 90 이상이면 A, 80 이상이면 B, 70 이상이면 C, 그 외에는 D를 출력합니다.',examples:[['90 80 70 100','85.0\nB'],['50 60 70 80','65.0\nD']],tests:[['90 80 70 100','85.0\nB'],['50 60 70 80','65.0\nD'],['100 100 100 100','100.0\nA'],['80 80 80 80','80.0\nB'],['70 70 70 70','70.0\nC']],starter:'# 네 점수의 평균과 등급을 계산해 보세요.\n'},
+      {title:'피보나치 수',level:'도전',topic:'반복문 · 수열',intro:'피보나치 수열은 앞의 두 수를 더해 다음 수를 만드는 수열이에요.\n0번째 수는 0, 1번째 수는 1입니다. N이 주어질 때 N번째 피보나치 수를 출력해 주세요.',input:'첫째 줄에 0 이상 30 이하의 정수 N이 주어집니다.',output:'N번째 피보나치 수를 출력합니다.',examples:[['7','13'],['0','0']],tests:[['7','13'],['0','0'],['1','1'],['10','55'],['30','832040']],starter:'# 반복문으로 피보나치 수를 구해 보세요.\n'},
+      {title:'문자 속 모음 세기',level:'도전',topic:'문자열 · 반복문',intro:'영어 단어에 a, e, i, o, u가 몇 번 들어 있는지 세어 봅시다.\n대문자와 소문자는 같은 글자로 취급합니다.',input:'첫째 줄에 알파벳으로만 이루어진 단어가 주어집니다. (길이 1~100)',output:'모음(a, e, i, o, u)의 개수를 출력합니다.',examples:[['education','5'],['PYTHON','1']],tests:[['education','5'],['PYTHON','1'],['rhythm','0'],['AEIOU','5'],['banana','3']],starter:'# 대소문자를 구분하지 않고 모음 개수를 세어 보세요.\n'}
+    ];
+    const modelAnswers = [
+      'a, b = map(int, input().split())\nprint(a + b)',
+      'n = int(input())\nprint("even" if n % 2 == 0 else "odd")',
+      'n = int(input())\nnums = list(map(int, input().split()))\nprint(max(nums))',
+      'word = input().strip()\nprint("yes" if word == word[::-1] else "no")',
+      'n = int(input())\nfor i in range(1, 10):\n    print(f"{n} x {i} = {n * i}")',
+      'n = int(input())\ncount = 0\nfor i in range(1, n + 1):\n    if n % i == 0:\n        count += 1\nprint(count)',
+      'n = int(input())\nfor i in range(1, n + 1):\n    print("*" * i)',
+      'scores = list(map(int, input().split()))\naverage = sum(scores) / 4\nif average >= 90:\n    grade = "A"\nelif average >= 80:\n    grade = "B"\nelif average >= 70:\n    grade = "C"\nelse:\n    grade = "D"\nprint(f"{average:.1f}")\nprint(grade)',
+      'n = int(input())\na, b = 0, 1\nfor _ in range(n):\n    a, b = b, a + b\nprint(a)',
+      'word = input().lower()\ncount = sum(1 for char in word if char in "aeiou")\nprint(count)'
+    ];
+    let current = 0;
+    let pyWorker;
+    let workerReady = false;
+    let running = false;
+    let timer;
+    const solved = new Set(JSON.parse(localStorage.getItem('codesanchaek-solved') || '[]'));
+    const $ = (selector) => document.querySelector(selector);
+    const problemList = $('#problemList');
+    const codeInput = $('#codeInput');
+    const statementPanel = $('#statementPanel');
+    const resultBody = $('#resultBody');
+    const submitButton = $('#submitCode');
+
+    function renderList(){
+      problemList.innerHTML = problems.map((problem,index)=>`<button class="problem-link ${index===current?'active ':''}${solved.has(index)?'solved':''}" type="button" data-index="${index}" aria-label="문제 ${index+1}: ${problem.title}${solved.has(index)?', 해결':''}" ${index===current?'aria-current="step"':''}><span class="problem-number">${String(index+1).padStart(2,'0')}</span><span class="problem-link-title">${problem.title}</span></button>`).join('');
+      problemList.querySelectorAll('.problem-link').forEach(button=>button.addEventListener('click',()=>selectProblem(Number(button.dataset.index))));
+      $('#progressText').textContent = `${solved.size} / ${problems.length}`;
+      $('#progressFill').style.width = `${solved.size / problems.length * 100}%`;
+      $('#nextProblem').disabled = current === problems.length - 1;
+    }
+    function renderProblem(){
+      const p=problems[current];
+      const examples=p.examples.map((example,index)=>`<div class="example-card"><div class="example-head">예제 ${index+1}</div><div class="example-body"><div class="example-col"><span>입력</span><pre>${escapeHtml(example[0])}</pre></div><div class="example-col"><span>출력</span><pre>${escapeHtml(example[1])}</pre></div></div></div>`).join('');
+      statementPanel.innerHTML=`<div class="problem-meta"><span class="problem-id">PROBLEM ${String(current+1).padStart(2,'0')}</span><span class="difficulty ${p.level==='도전'?'medium':'easy'}">${p.level}</span><span class="topic-tag">${p.topic}</span></div><h1 class="problem-title">${p.title}</h1><p class="problem-intro">${escapeHtml(p.intro)}</p><h2 class="section-heading">입력</h2><p class="section-copy">${escapeHtml(p.input)}</p><h2 class="section-heading">출력</h2><p class="section-copy">${escapeHtml(p.output)}</p><h2 class="section-heading">예제</h2>${examples}<p class="note">출력의 앞뒤 공백은 무시하지만, 줄바꿈과 출력 내용은 정확히 확인해요.</p>`;
+      renderList();
+      renderResultEmpty();
+    }
+    function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
+    function renderResultEmpty(){
+      $('#resultSubtitle').textContent='실행 결과가 여기에 표시돼요';
+      resultBody.innerHTML='<div class="result-empty"><span class="result-empty-mark">&gt;_</span><span>코드를 작성하고 제출 버튼을 눌러보세요.</span></div>';
+    }
+    function selectProblem(index){
+      if(index===current)return;
+      current=index;codeInput.value=problems[current].starter;updateLines();renderProblem();
+      if(window.innerWidth<=850)window.scrollTo({top:0,behavior:'smooth'});
+    }
+    function updateLines(){
+      const count=Math.max(1,codeInput.value.split('\n').length);
+      $('#lineNumbers').innerHTML=Array.from({length:count},(_,index)=>`<span>${index+1}</span>`).join('');
+      $('#lineNumbers').scrollTop=codeInput.scrollTop;
+    }
+    function setRunning(value){running=value;submitButton.disabled=value;submitButton.querySelector('span').textContent=value?'채점 중...':'코드 제출';}
+    function showMessage(kind,title,detail,chips,error){
+      $('#resultSubtitle').textContent=kind==='accepted'?'모든 테스트를 통과했어요':kind==='failed'?'다시 한번 확인해 보세요':'Python을 준비하고 있어요';
+      const icon=kind==='accepted'?'✓':kind==='failed'?'!':'…';
+      resultBody.innerHTML=`<div class="result-message ${kind}"><span class="result-icon">${icon}</span><div>${escapeHtml(title)}<div class="result-detail">${escapeHtml(detail)}</div></div></div>${chips?`<div class="case-list">${chips}</div>`:''}${error?`<div class="error-box">${escapeHtml(error)}</div>`:''}`;
+    }
+    function makeWorker(){
+      pyWorker=new Worker('judge-worker.js');
+      pyWorker.onmessage=(event)=>{
+        const data=event.data;
+        if(data.type==='ready'){
+          workerReady=true;
+          if(!running)$('#resultSubtitle').textContent='Python 3 실행 준비 완료';
+          return;
+        }
+        if(data.type==='load-error'){
+          clearTimeout(timer);workerReady=false;setRunning(false);
+          showMessage('failed','Python 실행 환경을 불러오지 못했어요.','인터넷 연결을 확인한 뒤 다시 제출해 주세요.','','Python 실행 환경을 불러올 수 없습니다.');
+          return;
+        }
+        if(data.type==='result')finishJudging(data);
+      };
+      pyWorker.onerror=()=>{
+        workerReady=false;setRunning(false);
+        showMessage('failed','실행 중 문제가 생겼어요.','코드를 확인한 뒤 다시 제출해 주세요.');
+        makeWorker();
+      };
+    }
+    function finishJudging(data){
+      clearTimeout(timer);setRunning(false);
+      if(data.error){showMessage('failed','코드를 실행하는 중 오류가 발생했어요.',`${data.errorName || '오류'}가 발생했습니다. 아래 내용을 확인해 주세요.`,'',data.error);return;}
+      const p=problems[current];
+      const chips=data.results.map((result,index)=>`<span class="case-chip ${result.pass?'pass':'fail'}">${index<p.examples.length?'예제':'테스트'} ${index+1} ${result.pass?'통과':'실패'}</span>`).join('');
+      const passed=data.results.filter(result=>result.pass).length;
+      if(passed===p.tests.length){
+        solved.add(current);localStorage.setItem('codesanchaek-solved',JSON.stringify([...solved]));renderList();
+        showMessage('accepted','정답이에요! 모든 테스트를 통과했어요.',`${passed}개 테스트를 모두 통과했습니다. 멋져요!`,chips);
+      }else{
+        const first=data.results.findIndex(result=>!result.pass);
+        const result=data.results[first];
+        const difference=`${passed} / ${p.tests.length}개 통과 · 테스트 ${first+1}에서 기대한 출력과 다릅니다.`;
+        const error=result.actual?`내 출력: ${result.actual}`:'출력된 내용이 없어요.';
+        showMessage('failed','아직 정답이 아니에요.',difference,chips,error);
+      }
+    }
+    function submit(){
+      if(running)return;
+      if(!codeInput.value.trim()){showMessage('failed','코드를 먼저 작성해 주세요.','문제를 풀고 코드를 입력한 다음 제출해 주세요.');return;}
+      if(!pyWorker)makeWorker();
+      setRunning(true);
+      $('#resultSubtitle').textContent=workerReady?'테스트케이스를 확인하고 있어요':'Python 실행 환경을 준비하고 있어요. 처음에는 잠시 걸릴 수 있어요.';
+      showMessage('running','코드를 테스트하고 있어요.','모든 테스트케이스를 하나씩 확인합니다.');
+      const handleTimeout=()=>{
+        if(!running)return;
+        pyWorker.terminate();workerReady=false;makeWorker();setRunning(false);
+        showMessage('failed','실행 시간이 너무 길어요.','반복문이 끝나는지 확인하고 다시 제출해 주세요.');
+      };
+      timer=setTimeout(handleTimeout,60000);
+      const send=()=>{
+        if(workerReady){
+          clearTimeout(timer);timer=setTimeout(handleTimeout,10000);
+          pyWorker.postMessage({type:'judge',code:codeInput.value,tests:problems[current].tests});
+        }else setTimeout(send,100);
+      };
+      send();
+    }
+    codeInput.value=problems[0].starter;updateLines();renderProblem();
+    codeInput.addEventListener('input',updateLines);
+    codeInput.addEventListener('scroll',()=>{$('#lineNumbers').scrollTop=codeInput.scrollTop;});
+    codeInput.addEventListener('keydown',(event)=>{
+      if(event.key==='Tab'){
+        event.preventDefault();const start=codeInput.selectionStart;const end=codeInput.selectionEnd;
+        codeInput.setRangeText('    ',start,end,'end');updateLines();
+      }
+      if((event.ctrlKey||event.metaKey)&&event.key==='Enter')submit();
+    });
+    $('#submitCode').addEventListener('click',submit);
+    $('#resetCode').addEventListener('click',()=>{codeInput.value='';updateLines();codeInput.focus();renderResultEmpty();});
+    $('#insertAnswer').addEventListener('click',()=>{
+      const currentAnswer=modelAnswers[current];
+      if(codeInput.value.trim()&&codeInput.value!==problems[current].starter&&codeInput.value!==currentAnswer&&!confirm('작성 중인 코드를 모범답안으로 바꿀까요?'))return;
+      codeInput.value=currentAnswer;updateLines();codeInput.focus();renderResultEmpty();showToast('모범답안을 편집기에 넣었어요.');
+    });
+    $('#nextProblem').addEventListener('click',()=>{if(current<problems.length-1)selectProblem(current+1);});
+    $('#resetProgress').addEventListener('click',()=>{
+      if(!solved.size){showToast('아직 저장된 풀이 기록이 없어요.');return;}
+      if(confirm('해결한 문제 기록을 모두 초기화할까요?')){solved.clear();localStorage.removeItem('codesanchaek-solved');renderList();showToast('풀이 기록을 초기화했어요.');}
+    });
+    function showToast(message){const toast=$('#toast');toast.textContent=message;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200);}
+  </script>
+</body>
+</html>
