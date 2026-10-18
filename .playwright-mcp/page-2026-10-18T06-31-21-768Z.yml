@@ -1,0 +1,117 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - generic [ref=e36]:
+      - generic: 내 진행
+      - strong [ref=e38]: 1 / 10
+    - button "기록 초기화" [ref=e39] [cursor=pointer]
+    - generic [ref=e40]: 학생 1
+    - button "로그아웃" [ref=e41] [cursor=pointer]
+  - main [ref=e42]:
+    - complementary [ref=e43]:
+      - navigation "문제 목록" [ref=e44]:
+        - 'button "문제 1: 두 수의 합, 해결" [ref=e257] [cursor=pointer]':
+          - generic [ref=e258]: 01 ✓
+        - 'button "문제 2: 짝수일까 홀수일까" [ref=e259] [cursor=pointer]':
+          - generic [ref=e260]: "02"
+        - 'button "문제 3: 가장 큰 수 찾기" [ref=e261] [cursor=pointer]':
+          - generic [ref=e262]: "03"
+        - 'button "문제 4: 거꾸로 읽어도 같은 글자" [ref=e263] [cursor=pointer]':
+          - generic [ref=e264]: "04"
+        - 'button "문제 5: 구구단 한 줄 출력" [ref=e265] [cursor=pointer]':
+          - generic [ref=e266]: "05"
+        - 'button "문제 6: 약수의 개수" [ref=e267] [cursor=pointer]':
+          - generic [ref=e268]: "06"
+        - 'button "문제 7: 별 계단 만들기" [ref=e269] [cursor=pointer]':
+          - generic [ref=e270]: "07"
+        - 'button "문제 8: 평균 점수와 등급" [ref=e271] [cursor=pointer]':
+          - generic [ref=e272]: "08"
+        - 'button "문제 9: 피보나치 수" [ref=e273] [cursor=pointer]':
+          - generic [ref=e274]: "09"
+        - 'button "문제 10: 문자 속 모음 세기" [ref=e275] [cursor=pointer]':
+          - generic [ref=e276]: "10"
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]: PROBLEM 01
+        - generic [ref=e68]: 입문
+        - generic [ref=e69]: 입력과 출력
+      - heading "두 수의 합" [level=1] [ref=e70]
+      - paragraph [ref=e71]: 민수는 두 정수를 더하는 프로그램을 만들고 싶어요. 두 정수 A와 B가 주어질 때, A와 B의 합을 출력하는 프로그램을 작성해 주세요.
+      - heading "입력" [level=2] [ref=e72]
+      - paragraph [ref=e73]: 첫째 줄에 정수 A와 B가 공백으로 구분되어 주어집니다. (-1,000 ≤ A, B ≤ 1,000)
+      - heading "출력" [level=2] [ref=e74]
+      - paragraph [ref=e75]: A와 B의 합을 출력합니다.
+      - heading "예제" [level=2] [ref=e76]
+      - generic [ref=e77]:
+        - generic [ref=e78]: 예제 1
+        - generic [ref=e79]:
+          - generic [ref=e80]:
+            - generic [ref=e81]: 입력
+            - generic [ref=e82]: 3 5
+          - generic [ref=e83]:
+            - generic [ref=e84]: 출력
+            - generic [ref=e85]: "8"
+      - generic [ref=e86]:
+        - generic [ref=e87]: 예제 2
+        - generic [ref=e88]:
+          - generic [ref=e89]:
+            - generic [ref=e90]: 입력
+            - generic [ref=e91]: "-7 2"
+          - generic [ref=e92]:
+            - generic [ref=e93]: 출력
+            - generic [ref=e94]: "-5"
+      - paragraph [ref=e95]: 출력의 앞뒤 공백은 무시하지만, 줄바꿈과 출력 내용은 정확히 확인해요.
+    - region "Python 코드 편집기" [ref=e96]:
+      - generic [ref=e97]:
+        - generic [ref=e98]: 코드 편집기
+        - generic [ref=e99]: main.py
+        - generic [ref=e100]: Python 3
+      - generic [ref=e102]:
+        - generic [ref=e103]:
+          - generic [ref=e137]: "1"
+          - generic [ref=e138]: "2"
+        - textbox "Python 코드 입력" [ref=e106]:
+          - /placeholder: "# 입력을 읽고 결과를 출력해 보세요."
+          - text: a, b = map(int, input().split()) print(a + b)
+      - generic [ref=e107]:
+        - paragraph [ref=e108]:
+          - generic [ref=e109]: Tab
+          - text: 들여쓰기
+          - generic [ref=e110]: ·
+          - text: 입력은 문제 설명의 형식을 따라주세요
+        - generic [ref=e111]:
+          - button "코드 제출" [ref=e112] [cursor=pointer]:
+            - img [ref=e113]
+            - generic [ref=e115]: 코드 제출
+          - button "코드 비우기" [ref=e116] [cursor=pointer]
+          - button "모범답안" [ref=e117] [cursor=pointer]
+          - button "다음 문제 →" [ref=e118] [cursor=pointer]
+      - generic [ref=e119]:
+        - generic [ref=e120]:
+          - generic [ref=e121]: 채점 결과
+          - generic [ref=e122]: 모든 테스트를 통과했어요
+        - generic [ref=e123]:
+          - generic [ref=e162]:
+            - generic [ref=e163]: ✓
+            - generic [ref=e164]:
+              - text: 정답이에요! 모든 테스트를 통과했어요.
+              - generic [ref=e165]: 5개 테스트를 모두 통과했습니다. 멋져요!
+          - generic [ref=e166]:
+            - generic [ref=e167]: 예제 1 통과
+            - generic [ref=e168]: 예제 2 통과
+            - generic [ref=e169]: 테스트 3 통과
+            - generic [ref=e170]: 테스트 4 통과
+            - generic [ref=e171]: 테스트 5 통과
+      - region "AI 학습 도우미" [ref=e127]:
+        - generic [ref=e128]:
+          - generic [ref=e129]: AI
+          - generic [ref=e130]: 학습 도우미
+          - generic [ref=e131]: 문제와 작성 코드가 AI에 전달돼요
+        - generic [ref=e132]:
+          - button "힌트 받기" [ref=e133] [cursor=pointer]
+          - button "오류 살펴보기" [disabled] [ref=e134]
+          - button "예제 실행 추적" [ref=e135] [cursor=pointer]
+        - generic [ref=e136]: 막히는 순간에 버튼을 눌러 도움을 받아보세요. 완성된 정답 코드는 제공하지 않아요.
+  - status: 학생 1 계정으로 로그인했어요.

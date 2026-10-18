@@ -1,0 +1,24 @@
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - button "로그인" [ref=e7] [cursor=pointer]
+  - dialog "학생 계정 로그인" [ref=e26]:
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - img [ref=e12]
+        - strong [ref=e14]: 코드산책
+      - heading "학생 계정 로그인" [level=2] [ref=e27]
+      - paragraph [ref=e16]: 학생과 선생님은 서로 다른 계정 공간을 사용합니다.
+      - generic [ref=e28]:
+        - button "← 계정 유형 다시 선택" [ref=e29] [cursor=pointer]
+        - generic [ref=e30]:
+          - text: 아이디
+          - textbox "아이디" [active] [ref=e31]
+        - generic [ref=e32]:
+          - text: 비밀번호
+          - textbox "비밀번호" [ref=e33]
+        - paragraph [ref=e34]
+        - button "로그인" [ref=e35] [cursor=pointer]
+  - status

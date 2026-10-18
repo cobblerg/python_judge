@@ -1,19 +1,195 @@
 require('dotenv').config();
 
 const express = require('express');
+const fs = require('fs/promises');
+const crypto = require('crypto');
 const path = require('path');
 const OpenAI = require('openai');
 
 const app = express();
 const port = Number(process.env.PORT || 3000);
+const privateDir = path.join(__dirname, 'private-data');
+const studentsDbPath = path.join(privateDir, 'students.db.json');
+const teachersDbPath = path.join(privateDir, 'teachers.db.json');
+const sessionSecretPath = path.join(privateDir, 'session.secret');
+const cookieName = 'codesanchaek_session';
+let sessionSecret;
 const client = process.env.OPENAI_API_KEY
   ? new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
   : null;
 const requestCounts = new Map();
+const writeQueues = new Map();
 
 app.use(express.json({ limit: '24kb' }));
+app.set('trust proxy', 1);
 
-app.post('/api/tutor', async (req, res) => {
+function makeAccount(username, displayName, password, role) {
+  const salt = crypto.randomBytes(16).toString('hex');
+  return {
+    id: crypto.randomUUID(),
+    username,
+    displayName,
+    role,
+    salt,
+    passwordHash: crypto.scryptSync(password, salt, 64).toString('hex'),
+    solvedProblems: [],
+    lastActiveAt: null
+  };
+}
+
+async function ensureDatabase(filePath, accounts) {
+  try {
+    await fs.access(filePath);
+  } catch {
+    await fs.writeFile(filePath, JSON.stringify({ accounts }, null, 2), { flag: 'wx', mode: 0o600 });
+  }
+}
+
+async function readDatabase(filePath) {
+  return JSON.parse(await fs.readFile(filePath, 'utf8'));
+}
+
+function updateDatabase(filePath, update) {
+  const previous = writeQueues.get(filePath) || Promise.resolve();
+  const next = previous.then(async () => {
+    const database = await readDatabase(filePath);
+    const result = update(database);
+    const temporaryPath = `${filePath}.${process.pid}.tmp`;
+    await fs.writeFile(temporaryPath, JSON.stringify(database, null, 2), { mode: 0o600 });
+    await fs.rename(temporaryPath, filePath);
+    return result;
+  });
+  writeQueues.set(filePath, next.catch(() => {}));
+  return next;
+}
+
+function roleDatabase(role) {
+  return role === 'teacher' ? teachersDbPath : role === 'student' ? studentsDbPath : null;
+}
+
+function signSession(payload) {
+  const encoded = Buffer.from(JSON.stringify(payload)).toString('base64url');
+  const signature = crypto.createHmac('sha256', sessionSecret).update(encoded).digest('base64url');
+  return `${encoded}.${signature}`;
+}
+
+function getSession(req) {
+  const cookies = Object.fromEntries((req.headers.cookie || '').split(';').filter(Boolean).map((part) => {
+    const separator = part.indexOf('=');
+    return [part.slice(0, separator).trim(), decodeURIComponent(part.slice(separator + 1).trim())];
+  }));
+  const token = cookies[cookieName];
+  if (!token) return null;
+  const [encoded, signature] = token.split('.');
+  if (!encoded || !signature) return null;
+  const expected = crypto.createHmac('sha256', sessionSecret).update(encoded).digest();
+  let received;
+  try {
+    received = Buffer.from(signature, 'base64url');
+  } catch {
+    return null;
+  }
+  if (received.length !== expected.length || !crypto.timingSafeEqual(received, expected)) return null;
+  try {
+    const payload = JSON.parse(Buffer.from(encoded, 'base64url').toString('utf8'));
+    if (payload.expiresAt < Date.now() || !roleDatabase(payload.role)) return null;
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+function requireRole(role) {
+  return (req, res, next) => {
+    const session = getSession(req);
+    if (!session || (role && session.role !== role)) {
+      return res.status(401).json({ error: '이 기능을 이용할 수 있는 계정으로 로그인해 주세요.' });
+    }
+    req.session = session;
+    next();
+  };
+}
+
+function publicAccount(account) {
+  return { username: account.username, displayName: account.displayName, role: account.role };
+}
+
+app.post('/api/auth/login', async (req, res) => {
+  const { role, username, password } = req.body || {};
+  const filePath = roleDatabase(role);
+  if (!filePath || typeof username !== 'string' || typeof password !== 'string' || password.length > 200) {
+    return res.status(400).json({ error: '계정 유형, 아이디, 비밀번호를 확인해 주세요.' });
+  }
+  const database = await readDatabase(filePath);
+  const account = database.accounts.find((item) => item.username === username.trim().toLowerCase());
+  const candidate = account ? crypto.scryptSync(password, account.salt, 64) : Buffer.alloc(64);
+  const expected = account ? Buffer.from(account.passwordHash, 'hex') : Buffer.alloc(64);
+  const valid = crypto.timingSafeEqual(candidate, expected) && !!account;
+  if (!valid) return res.status(401).json({ error: '아이디 또는 비밀번호를 확인해 주세요.' });
+
+  await updateDatabase(filePath, (databaseToUpdate) => {
+    const current = databaseToUpdate.accounts.find((item) => item.id === account.id);
+    if (current) current.lastActiveAt = new Date().toISOString();
+  });
+  const value = signSession({ sub: account.id, role, expiresAt: Date.now() + 8 * 60 * 60 * 1000 });
+  res.cookie(cookieName, value, {
+    httpOnly: true,
+    secure: req.secure,
+    sameSite: 'lax',
+    path: '/',
+    maxAge: 8 * 60 * 60 * 1000
+  });
+  res.json({ user: publicAccount(account) });
+});
+
+app.get('/api/auth/me', async (req, res) => {
+  const session = getSession(req);
+  if (!session) return res.json({ user: null });
+  const database = await readDatabase(roleDatabase(session.role));
+  const account = database.accounts.find((item) => item.id === session.sub);
+  if (!account) return res.json({ user: null });
+  res.json({ user: publicAccount(account) });
+});
+
+app.post('/api/auth/logout', (_req, res) => {
+  res.clearCookie(cookieName, { httpOnly: true, secure: _req.secure, sameSite: 'lax', path: '/' });
+  res.json({ ok: true });
+});
+
+app.get('/api/student/progress', requireRole('student'), async (req, res) => {
+  const database = await readDatabase(studentsDbPath);
+  const account = database.accounts.find((item) => item.id === req.session.sub);
+  if (!account) return res.status(404).json({ error: '학생 계정을 찾을 수 없습니다.' });
+  res.json({ solvedProblems: account.solvedProblems || [] });
+});
+
+app.put('/api/student/progress', requireRole('student'), async (req, res) => {
+  const solvedProblems = req.body?.solvedProblems;
+  if (!Array.isArray(solvedProblems) || solvedProblems.length > 10 || solvedProblems.some((value) => !Number.isInteger(value) || value < 0 || value > 9)) {
+    return res.status(400).json({ error: '풀이 기록 형식이 올바르지 않습니다.' });
+  }
+  const uniqueSolved = [...new Set(solvedProblems)];
+  await updateDatabase(studentsDbPath, (database) => {
+    const account = database.accounts.find((item) => item.id === req.session.sub);
+    if (account) {
+      account.solvedProblems = uniqueSolved;
+      account.lastActiveAt = new Date().toISOString();
+    }
+  });
+  res.json({ solvedProblems: uniqueSolved });
+});
+
+app.get('/api/teacher/overview', requireRole('teacher'), async (_req, res) => {
+  const database = await readDatabase(studentsDbPath);
+  res.json({ students: database.accounts.map((account) => ({
+    username: account.username,
+    displayName: account.displayName,
+    solvedProblems: account.solvedProblems || [],
+    lastActiveAt: account.lastActiveAt
+  })) });
+});
+
+app.post('/api/tutor', requireRole('student'), async (req, res) => {
   const now = Date.now();
   const bucket = Math.floor(now / 60_000);
   const key = `${req.ip}:${bucket}`;
@@ -107,8 +283,35 @@ app.post('/api/tutor', async (req, res) => {
   }
 });
 
-app.use(express.static(path.join(__dirname)));
+app.get('/', (_req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/judge-worker.js', (_req, res) => res.sendFile(path.join(__dirname, 'judge-worker.js')));
+app.get('/__preview-bridge.js', (_req, res) => res.sendFile(path.join(__dirname, '__preview-bridge.js')));
+app.get('/favicon.ico', (_req, res) => res.sendStatus(204));
+app.use('/private-data', (_req, res) => res.sendStatus(404));
 
-app.listen(port, '0.0.0.0', () => {
-  console.log(`CodeSanchaek listening on ${port}`);
+async function start() {
+  await fs.mkdir(privateDir, { recursive: true });
+  try {
+    await fs.writeFile(sessionSecretPath, crypto.randomBytes(32), { flag: 'wx', mode: 0o600 });
+  } catch (error) {
+    if (error.code !== 'EEXIST') throw error;
+  }
+  sessionSecret = await fs.readFile(sessionSecretPath);
+  await ensureDatabase(studentsDbPath, [
+    makeAccount('student01', '학생 1', 'learn1010', 'student'),
+    makeAccount('student02', '학생 2', 'learn2020', 'student'),
+    makeAccount('student03', '학생 3', 'learn3030', 'student')
+  ]);
+  await ensureDatabase(teachersDbPath, [
+    makeAccount('teacher', '담당 선생님', 'teach2026', 'teacher')
+  ]);
+  await Promise.all([studentsDbPath, teachersDbPath, sessionSecretPath].map((filePath) => fs.chmod(filePath, 0o600)));
+  app.listen(port, '0.0.0.0', () => {
+    console.log(`CodeSanchaek listening on ${port}`);
+  });
+}
+
+start().catch((error) => {
+  console.error('Server startup failed:', error.message);
+  process.exit(1);
 });
