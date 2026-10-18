@@ -19,8 +19,9 @@
     .editor-panel{background:#f8f9f7;display:flex;min-width:0;flex-direction:column;overflow:hidden}.editor-top{height:60px;flex:none;display:flex;align-items:center;padding:0 20px;border-bottom:1px solid var(--line);gap:10px}.editor-caption{font-size:12px;font-weight:800}.file-pill{font:10px var(--mono);padding:5px 8px;border-radius:6px;background:#eff1ec;color:#727b71}.editor-spacer{flex:1}.lang-pill{display:flex;align-items:center;gap:7px;font-size:11px;font-weight:700;color:#4c574d}.python-dot{width:8px;height:8px;background:#477ba8;border-radius:50%;box-shadow:4px 3px 0 -1px #f1c94c}.editor-body{flex:1;min-height:190px;display:flex;overflow:hidden;background:#fff}.line-numbers{width:45px;flex:none;background:#fbfcfa;border-right:1px solid #eff1ed;padding:20px 12px 20px 0;text-align:right;color:#a9afa7;font:12px/1.8 var(--mono);user-select:none;overflow:hidden}.line-numbers span{display:block;height:21.6px}.code-input{flex:1;min-width:0;resize:none;border:0;outline:none!important;background:#fff;padding:20px 17px;color:#27342b;font:12px/1.8 var(--mono);tab-size:4;white-space:pre;overflow:auto}.code-input::placeholder{color:#a1aaa0}.editor-footer{padding:14px 18px 16px;border-top:1px solid var(--line);background:#fff;flex:none}.editor-hint{font-size:10px;color:#858d83;margin:0 0 12px;display:flex;align-items:center;gap:6px}.editor-hint kbd{font:10px var(--mono);border:1px solid #dfe3dc;border-bottom-width:2px;padding:1px 4px;border-radius:4px;background:#fafbf9;color:#616a61}.editor-actions{display:flex;align-items:center;gap:9px}.submit-button{height:42px;border:0;background:#286c4d;color:white;border-radius:8px;padding:0 17px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .15s,transform .15s}.submit-button:hover{background:#1f593e;transform:translateY(-1px)}.submit-button:disabled{background:#8eaa9b;cursor:wait;transform:none}.submit-button svg{width:15px;height:15px}.reset-button,.next-button{height:40px;background:#fff;border:1px solid #e0e5dc;border-radius:8px;padding:0 13px;font-size:11px;font-weight:700;color:#59645a;cursor:pointer}.reset-button:hover,.next-button:hover{background:#f4f6f1}.next-button{margin-left:auto;color:#315c40}.next-button:disabled{opacity:.4;cursor:not-allowed}
     .result-panel{height:190px;flex:none;border-top:1px solid var(--line);background:#f9faf8;display:flex;flex-direction:column;min-height:120px}.result-top{height:42px;flex:none;display:flex;align-items:center;gap:9px;padding:0 18px;border-bottom:1px solid #ecefea}.result-top span:first-child{font-size:11px;font-weight:800}.result-subtitle{font-size:10px;color:#939a91}.result-body{padding:14px 18px;overflow:auto;flex:1}.result-empty{height:100%;display:flex;align-items:center;gap:11px;color:#8b938a;font-size:11px}.result-empty-mark{width:30px;height:30px;border-radius:8px;border:1px solid #e3e7e0;display:grid;place-items:center;color:#9ca59a;font:12px var(--mono)}.result-message{display:flex;align-items:flex-start;gap:10px;font-size:12px;font-weight:700}.result-icon{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;flex:none;font-size:12px}.result-message.accepted{color:#286b48}.result-message.accepted .result-icon{background:#e4f3e5}.result-message.failed{color:#a64a3d}.result-message.failed .result-icon{background:#fbeae7}.result-message.running{color:#6d772d}.result-message.running .result-icon{background:#f2f5dd}.result-detail{font-size:10px;font-weight:500;color:#7b847b;margin-top:4px;line-height:1.6}.case-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:11px}.case-chip{font:10px var(--mono);border-radius:5px;padding:5px 8px;background:#edf0eb;color:#697268}.case-chip.pass{background:#e6f3e5;color:#35734a}.case-chip.fail{background:#fae9e6;color:#aa4a3e}.case-chip.sample{border:1px solid #e4e8e0;background:white}.error-box{margin-top:8px;padding:8px 10px;border-radius:6px;background:#fff2ef;color:#9c4539;font:10px/1.6 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere}
     .toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#27332a;color:white;padding:10px 16px;border-radius:8px;font-size:12px;transition:opacity .2s,transform .2s;z-index:5}.toast.show{opacity:1;transform:translate(-50%,0)}
+    .tutor-panel{flex:none;background:#fff;border-top:1px solid var(--line);padding:14px 18px 16px}.tutor-heading{display:flex;align-items:center;gap:9px;margin-bottom:11px}.tutor-mark{width:25px;height:25px;border-radius:8px;background:#e8f0dd;color:#356443;display:grid;place-items:center;font:700 9px var(--mono)}.tutor-title{font-size:12px;font-weight:800}.tutor-privacy{font-size:9px;color:#899187;margin-left:auto}.tutor-actions{display:flex;gap:7px;flex-wrap:wrap}.tutor-action{min-height:36px;border:1px solid #e1e7dc;border-radius:7px;background:#fbfcfa;padding:0 11px;color:#49584b;font-size:10px;font-weight:700;cursor:pointer;transition:background .15s,border-color .15s}.tutor-action:hover:not(:disabled){background:#f0f5e9;border-color:#c9d8b9}.tutor-action:disabled{opacity:.42;cursor:not-allowed}.tutor-response{min-height:40px;max-height:110px;overflow:auto;margin-top:9px;padding:9px 11px;border-radius:7px;background:#f6f8f3;color:#657063;font-size:10px;line-height:1.7;white-space:pre-wrap}.tutor-response:empty{display:none}.tutor-response.loading{color:#547444}.tutor-panel[aria-busy="true"] .tutor-mark{animation:tutor-pulse 1s infinite alternate}@keyframes tutor-pulse{to{opacity:.45;transform:scale(.93)}}
     @media(max-width:1120px){.workspace{grid-template-columns:205px minmax(310px,.9fr) minmax(360px,1.1fr)}.statement-panel{padding:25px 22px}.topbar{padding:0 20px}}
-    @media(max-width:850px){body{height:auto;min-height:100vh;overflow:auto}.topbar{height:60px;padding:0 15px;gap:14px}.course-label,.top-divider{display:none}.progress-label{font-size:0;gap:7px}.progress-track{width:70px}.progress-label strong{font-size:11px}.top-action{padding:9px 6px}.workspace{height:auto;min-height:calc(100vh - 60px);display:flex;flex-direction:column}.sidebar{order:0;border-right:0;border-bottom:1px solid var(--line);padding:13px 15px 12px;overflow:hidden}.side-kicker,.side-title,.side-bottom{display:none}.problem-list{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:2px}.problem-link{width:38px;height:38px;flex:none;justify-content:center;padding:0;border:1px solid #e3e7df;border-radius:9px;background:#fff}.problem-link.active{border-color:#b9d0aa}.problem-link-title{display:none}.problem-number{border:0;width:auto;height:auto;background:transparent!important;color:inherit!important}.problem-link.solved .problem-number{font-size:0}.statement-panel{order:1;border-right:0;padding:23px 20px 26px;max-height:none}.problem-title{font-size:23px}.problem-intro{margin-bottom:18px}.editor-panel{order:2;min-height:560px;border-top:1px solid var(--line)}.editor-body{min-height:300px}.result-panel{height:180px}.editor-top{padding:0 15px}.editor-footer{padding:12px 14px 14px}}
+    @media(max-width:850px){body{height:auto;min-height:100vh;overflow:auto}.topbar{height:60px;padding:0 15px;gap:14px}.course-label,.top-divider{display:none}.progress-label{font-size:0;gap:7px}.progress-track{width:70px}.progress-label strong{font-size:11px}.top-action{padding:9px 6px}.workspace{height:auto;min-height:calc(100vh - 60px);display:flex;flex-direction:column}.sidebar{order:0;border-right:0;border-bottom:1px solid var(--line);padding:13px 15px 12px;overflow:hidden}.side-kicker,.side-title,.side-bottom{display:none}.problem-list{flex-direction:row;overflow-x:auto;gap:6px;padding-bottom:2px}.problem-link{width:38px;height:38px;flex:none;justify-content:center;padding:0;border:1px solid #e3e7df;border-radius:9px;background:#fff}.problem-link.active{border-color:#b9d0aa}.problem-link-title{display:none}.problem-number{border:0;width:auto;height:auto;background:transparent!important;color:inherit!important}.problem-link.solved .problem-number{font-size:0}.statement-panel{order:1;border-right:0;padding:23px 20px 26px;max-height:none}.problem-title{font-size:23px}.problem-intro{margin-bottom:18px}.editor-panel{order:2;min-height:560px;border-top:1px solid var(--line)}.editor-body{min-height:300px}.result-panel{height:180px}.editor-top{padding:0 15px}.editor-footer{padding:12px 14px 14px}.tutor-panel{padding:14px}.tutor-privacy{font-size:8px}}
     @media(max-width:460px){.brand{font-size:17px}.brand-mark{width:29px;height:29px}.top-action{font-size:11px}.statement-panel{padding:20px 16px}.example-col{padding:9px}.editor-actions{gap:6px;flex-wrap:wrap}.submit-button{padding:0 12px}.reset-button,.answer-button,.next-button{padding:0 9px;font-size:10px}.editor-footer{padding-inline:11px}.editor-hint{font-size:9px}}
     .answer-button{height:40px;background:#f8fbf2;border:1px solid #d8e4c9;border-radius:8px;padding:0 13px;font-size:11px;font-weight:700;color:#45643c;cursor:pointer}.answer-button:hover{background:#eff6e5}
   </style>
@@ -40,6 +41,11 @@
       <div class="editor-body"><div class="line-numbers" id="lineNumbers" aria-hidden="true"></div><textarea class="code-input" id="codeInput" aria-label="Python 코드 입력" spellcheck="false" autocapitalize="off" autocomplete="off" placeholder="# 입력을 읽고 결과를 출력해 보세요."></textarea></div>
       <div class="editor-footer"><p class="editor-hint"><kbd>Tab</kbd> 들여쓰기 <span>·</span> 입력은 문제 설명의 형식을 따라주세요</p><div class="editor-actions"><button class="submit-button" id="submitCode" type="button"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 10h11m-4-4 4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg><span>코드 제출</span></button><button class="reset-button" id="resetCode" type="button">코드 비우기</button><button class="answer-button" id="insertAnswer" type="button" title="현재 문제의 모범답안을 편집기에 넣습니다">모범답안</button><button class="next-button" id="nextProblem" type="button">다음 문제 →</button></div></div>
       <section class="result-panel" aria-live="polite"><div class="result-top"><span>채점 결과</span><span class="result-subtitle" id="resultSubtitle">실행 결과가 여기에 표시돼요</span></div><div class="result-body" id="resultBody"><div class="result-empty"><span class="result-empty-mark">&gt;_</span><span>코드를 작성하고 제출 버튼을 눌러보세요.</span></div></div></section>
+      <section class="tutor-panel" id="tutorPanel" aria-label="AI 학습 도우미" aria-busy="false">
+        <div class="tutor-heading"><span class="tutor-mark">AI</span><span class="tutor-title">학습 도우미</span><span class="tutor-privacy">문제와 작성 코드가 AI에 전달돼요</span></div>
+        <div class="tutor-actions"><button class="tutor-action" type="button" data-tutor-action="hint">힌트 받기</button><button class="tutor-action" id="tutorErrorButton" type="button" data-tutor-action="error" disabled>오류 살펴보기</button><button class="tutor-action" type="button" data-tutor-action="trace">예제 실행 추적</button></div>
+        <div class="tutor-response" id="tutorResponse" aria-live="polite">막히는 순간에 버튼을 눌러 도움을 받아보세요. 완성된 정답 코드는 제공하지 않아요.</div>
+      </section>
     </section>
   </main>
   <div class="toast" id="toast" role="status"></div>
@@ -73,6 +79,8 @@
     let workerReady = false;
     let running = false;
     let timer;
+    let tutorBusy = false;
+    let lastJudgeContext = null;
     const solved = new Set(JSON.parse(localStorage.getItem('codesanchaek-solved') || '[]'));
     const $ = (selector) => document.querySelector(selector);
     const problemList = $('#problemList');
@@ -94,11 +102,52 @@
       statementPanel.innerHTML=`<div class="problem-meta"><span class="problem-id">PROBLEM ${String(current+1).padStart(2,'0')}</span><span class="difficulty ${p.level==='도전'?'medium':'easy'}">${p.level}</span><span class="topic-tag">${p.topic}</span></div><h1 class="problem-title">${p.title}</h1><p class="problem-intro">${escapeHtml(p.intro)}</p><h2 class="section-heading">입력</h2><p class="section-copy">${escapeHtml(p.input)}</p><h2 class="section-heading">출력</h2><p class="section-copy">${escapeHtml(p.output)}</p><h2 class="section-heading">예제</h2>${examples}<p class="note">출력의 앞뒤 공백은 무시하지만, 줄바꿈과 출력 내용은 정확히 확인해요.</p>`;
       renderList();
       renderResultEmpty();
+      resetTutor();
     }
     function escapeHtml(value){return String(value).replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));}
     function renderResultEmpty(){
       $('#resultSubtitle').textContent='실행 결과가 여기에 표시돼요';
       resultBody.innerHTML='<div class="result-empty"><span class="result-empty-mark">&gt;_</span><span>코드를 작성하고 제출 버튼을 눌러보세요.</span></div>';
+    }
+    function updateTutorButtons(){
+      document.querySelectorAll('[data-tutor-action]').forEach(button=>{
+        button.disabled=tutorBusy||running||(button.dataset.tutorAction==='error'&&!lastJudgeContext);
+      });
+    }
+    function resetTutor(){
+      lastJudgeContext=null;
+      $('#tutorResponse').textContent='막히는 순간에 버튼을 눌러 도움을 받아보세요. 완성된 정답 코드는 제공하지 않아요.';
+      $('#tutorResponse').classList.remove('loading');
+      $('#tutorPanel').setAttribute('aria-busy','false');
+      updateTutorButtons();
+    }
+    async function askTutor(action){
+      if(tutorBusy||running)return;
+      const problem=problems[current];
+      const requestedProblem=current;
+      const requestedCode=codeInput.value;
+      const isTrace=action==='trace';
+      const publicExample=isTrace?problem.examples[0]:action==='error'?lastJudgeContext?.failedPublicExample:null;
+      const context={
+        action,
+        problem:{title:problem.title,description:problem.intro,input:problem.input,output:problem.output,publicExample:publicExample?{input:publicExample.input??publicExample[0],output:publicExample.expected??publicExample[1],studentOutput:publicExample.actual??publicExample[2]??null}:null},
+        code:requestedCode,
+        result:action==='error'?lastJudgeContext:null
+      };
+      tutorBusy=true;updateTutorButtons();
+      const response=$('#tutorResponse');
+      response.textContent='문제와 코드를 살펴보고 있어요...';response.classList.add('loading');
+      $('#tutorPanel').setAttribute('aria-busy','true');
+      try{
+        const result=await fetch('/api/tutor',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(context),signal:AbortSignal.timeout(30000)});
+        const data=await result.json();
+        if(!result.ok)throw new Error(data.error||'튜터 응답을 가져오지 못했어요.');
+        response.textContent=current===requestedProblem&&codeInput.value===requestedCode?data.reply:'요청한 뒤 문제나 코드가 바뀌어 응답을 표시하지 않았어요. 다시 요청해 주세요.';
+      }catch(error){
+        response.textContent=error.name==='TimeoutError'?'응답이 늦어지고 있어요. 잠시 뒤 다시 눌러주세요.':error.message||'튜터와 연결하지 못했어요. 잠시 뒤 다시 시도해 주세요.';
+      }finally{
+        tutorBusy=false;response.classList.remove('loading');$('#tutorPanel').setAttribute('aria-busy','false');updateTutorButtons();
+      }
     }
     function selectProblem(index){
       if(index===current)return;
@@ -110,7 +159,7 @@
       $('#lineNumbers').innerHTML=Array.from({length:count},(_,index)=>`<span>${index+1}</span>`).join('');
       $('#lineNumbers').scrollTop=codeInput.scrollTop;
     }
-    function setRunning(value){running=value;submitButton.disabled=value;submitButton.querySelector('span').textContent=value?'채점 중...':'코드 제출';}
+    function setRunning(value){running=value;submitButton.disabled=value;submitButton.querySelector('span').textContent=value?'채점 중...':'코드 제출';updateTutorButtons();}
     function showMessage(kind,title,detail,chips,error){
       $('#resultSubtitle').textContent=kind==='accepted'?'모든 테스트를 통과했어요':kind==='failed'?'다시 한번 확인해 보세요':'Python을 준비하고 있어요';
       const icon=kind==='accepted'?'✓':kind==='failed'?'!':'…';
@@ -140,7 +189,11 @@
     }
     function finishJudging(data){
       clearTimeout(timer);setRunning(false);
-      if(data.error){showMessage('failed','코드를 실행하는 중 오류가 발생했어요.',`${data.errorName || '오류'}가 발생했습니다. 아래 내용을 확인해 주세요.`,'',data.error);return;}
+      if(data.error){
+        lastJudgeContext={kind:'runtime-error',passed:0,total:problems[current].tests.length,failedPublicExample:null,runtimeError:data.error};
+        updateTutorButtons();
+        showMessage('failed','코드를 실행하는 중 오류가 발생했어요.',`${data.errorName || '오류'}가 발생했습니다. 아래 내용을 확인해 주세요.`,'',data.error);return;
+      }
       const p=problems[current];
       const chips=data.results.map((result,index)=>`<span class="case-chip ${result.pass?'pass':'fail'}">${index<p.examples.length?'예제':'테스트'} ${index+1} ${result.pass?'통과':'실패'}</span>`).join('');
       const passed=data.results.filter(result=>result.pass).length;
@@ -150,6 +203,8 @@
       }else{
         const first=data.results.findIndex(result=>!result.pass);
         const result=data.results[first];
+        lastJudgeContext={kind:'wrong-answer',passed,total:p.tests.length,failedPublicExample:first<p.examples.length?{input:p.examples[first][0],expected:p.examples[first][1],actual:result.actual.slice(0,500)}:null,runtimeError:''};
+        updateTutorButtons();
         const difference=`${passed} / ${p.tests.length}개 통과 · 테스트 ${first+1}에서 기대한 출력과 다릅니다.`;
         const error=result.actual?`내 출력: ${result.actual}`:'출력된 내용이 없어요.';
         showMessage('failed','아직 정답이 아니에요.',difference,chips,error);
@@ -158,6 +213,7 @@
     function submit(){
       if(running)return;
       if(!codeInput.value.trim()){showMessage('failed','코드를 먼저 작성해 주세요.','문제를 풀고 코드를 입력한 다음 제출해 주세요.');return;}
+      lastJudgeContext=null;updateTutorButtons();
       if(!pyWorker)makeWorker();
       setRunning(true);
       $('#resultSubtitle').textContent=workerReady?'테스트케이스를 확인하고 있어요':'Python 실행 환경을 준비하고 있어요. 처음에는 잠시 걸릴 수 있어요.';
@@ -177,7 +233,10 @@
       send();
     }
     codeInput.value=problems[0].starter;updateLines();renderProblem();
-    codeInput.addEventListener('input',updateLines);
+    codeInput.addEventListener('input',()=>{
+      updateLines();lastJudgeContext=null;updateTutorButtons();
+      $('#tutorResponse').textContent='코드가 바뀌었어요. 새로 제출한 뒤 오류 설명을 받을 수 있어요.';
+    });
     codeInput.addEventListener('scroll',()=>{$('#lineNumbers').scrollTop=codeInput.scrollTop;});
     codeInput.addEventListener('keydown',(event)=>{
       if(event.key==='Tab'){
@@ -187,12 +246,13 @@
       if((event.ctrlKey||event.metaKey)&&event.key==='Enter')submit();
     });
     $('#submitCode').addEventListener('click',submit);
-    $('#resetCode').addEventListener('click',()=>{codeInput.value='';updateLines();codeInput.focus();renderResultEmpty();});
+    $('#resetCode').addEventListener('click',()=>{codeInput.value='';updateLines();codeInput.focus();renderResultEmpty();resetTutor();});
     $('#insertAnswer').addEventListener('click',()=>{
       const currentAnswer=modelAnswers[current];
       if(codeInput.value.trim()&&codeInput.value!==problems[current].starter&&codeInput.value!==currentAnswer&&!confirm('작성 중인 코드를 모범답안으로 바꿀까요?'))return;
-      codeInput.value=currentAnswer;updateLines();codeInput.focus();renderResultEmpty();showToast('모범답안을 편집기에 넣었어요.');
+      codeInput.value=currentAnswer;updateLines();codeInput.focus();renderResultEmpty();resetTutor();showToast('모범답안을 편집기에 넣었어요.');
     });
+    document.querySelectorAll('[data-tutor-action]').forEach(button=>button.addEventListener('click',()=>askTutor(button.dataset.tutorAction)));
     $('#nextProblem').addEventListener('click',()=>{if(current<problems.length-1)selectProblem(current+1);});
     $('#resetProgress').addEventListener('click',()=>{
       if(!solved.size){showToast('아직 저장된 풀이 기록이 없어요.');return;}

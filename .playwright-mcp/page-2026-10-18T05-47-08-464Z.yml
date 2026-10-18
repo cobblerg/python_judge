@@ -1,0 +1,108 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - img [ref=e5]
+      - text: 코드산책
+    - generic [ref=e7]:
+      - generic: 내 진행
+      - strong [ref=e9]: 0 / 10
+    - button "기록 초기화" [ref=e10] [cursor=pointer]
+  - main [ref=e11]:
+    - complementary [ref=e12]:
+      - navigation "문제 목록" [ref=e13]:
+        - 'button "문제 1: 두 수의 합" [ref=e14] [cursor=pointer]':
+          - generic [ref=e15]: "01"
+        - 'button "문제 2: 짝수일까 홀수일까" [ref=e16] [cursor=pointer]':
+          - generic [ref=e17]: "02"
+        - 'button "문제 3: 가장 큰 수 찾기" [ref=e18] [cursor=pointer]':
+          - generic [ref=e19]: "03"
+        - 'button "문제 4: 거꾸로 읽어도 같은 글자" [ref=e20] [cursor=pointer]':
+          - generic [ref=e21]: "04"
+        - 'button "문제 5: 구구단 한 줄 출력" [ref=e22] [cursor=pointer]':
+          - generic [ref=e23]: "05"
+        - 'button "문제 6: 약수의 개수" [ref=e24] [cursor=pointer]':
+          - generic [ref=e25]: "06"
+        - 'button "문제 7: 별 계단 만들기" [ref=e26] [cursor=pointer]':
+          - generic [ref=e27]: "07"
+        - 'button "문제 8: 평균 점수와 등급" [ref=e28] [cursor=pointer]':
+          - generic [ref=e29]: "08"
+        - 'button "문제 9: 피보나치 수" [ref=e30] [cursor=pointer]':
+          - generic [ref=e31]: "09"
+        - 'button "문제 10: 문자 속 모음 세기" [ref=e32] [cursor=pointer]':
+          - generic [ref=e33]: "10"
+    - generic [ref=e34]:
+      - generic [ref=e35]:
+        - generic [ref=e36]: PROBLEM 01
+        - generic [ref=e37]: 입문
+        - generic [ref=e38]: 입력과 출력
+      - heading "두 수의 합" [level=1] [ref=e39]
+      - paragraph [ref=e40]: 민수는 두 정수를 더하는 프로그램을 만들고 싶어요. 두 정수 A와 B가 주어질 때, A와 B의 합을 출력하는 프로그램을 작성해 주세요.
+      - heading "입력" [level=2] [ref=e41]
+      - paragraph [ref=e42]: 첫째 줄에 정수 A와 B가 공백으로 구분되어 주어집니다. (-1,000 ≤ A, B ≤ 1,000)
+      - heading "출력" [level=2] [ref=e43]
+      - paragraph [ref=e44]: A와 B의 합을 출력합니다.
+      - heading "예제" [level=2] [ref=e45]
+      - generic [ref=e46]:
+        - generic [ref=e47]: 예제 1
+        - generic [ref=e48]:
+          - generic [ref=e49]:
+            - generic [ref=e50]: 입력
+            - generic [ref=e51]: 3 5
+          - generic [ref=e52]:
+            - generic [ref=e53]: 출력
+            - generic [ref=e54]: "8"
+      - generic [ref=e55]:
+        - generic [ref=e56]: 예제 2
+        - generic [ref=e57]:
+          - generic [ref=e58]:
+            - generic [ref=e59]: 입력
+            - generic [ref=e60]: "-7 2"
+          - generic [ref=e61]:
+            - generic [ref=e62]: 출력
+            - generic [ref=e63]: "-5"
+      - paragraph [ref=e64]: 출력의 앞뒤 공백은 무시하지만, 줄바꿈과 출력 내용은 정확히 확인해요.
+    - region "Python 코드 편집기" [ref=e65]:
+      - generic [ref=e66]:
+        - generic [ref=e67]: 코드 편집기
+        - generic [ref=e68]: main.py
+        - generic [ref=e69]: Python 3
+      - generic [ref=e71]:
+        - generic [ref=e106]: "1"
+        - textbox "Python 코드 입력" [ref=e75]:
+          - /placeholder: "# 입력을 읽고 결과를 출력해 보세요."
+          - text: print(
+      - generic [ref=e76]:
+        - paragraph [ref=e77]:
+          - generic [ref=e78]: Tab
+          - text: 들여쓰기
+          - generic [ref=e79]: ·
+          - text: 입력은 문제 설명의 형식을 따라주세요
+        - generic [ref=e80]:
+          - button "코드 제출" [ref=e81] [cursor=pointer]:
+            - img [ref=e82]
+            - generic [ref=e84]: 코드 제출
+          - button "코드 비우기" [ref=e85] [cursor=pointer]
+          - button "모범답안" [ref=e86] [cursor=pointer]
+          - button "다음 문제 →" [ref=e87] [cursor=pointer]
+      - generic [ref=e88]:
+        - generic [ref=e89]:
+          - generic [ref=e90]: 채점 결과
+          - generic [ref=e91]: 다시 한번 확인해 보세요
+        - generic [ref=e92]:
+          - generic [ref=e107]:
+            - generic [ref=e108]: "!"
+            - generic [ref=e109]:
+              - text: 코드를 실행하는 중 오류가 발생했어요.
+              - generic [ref=e110]: PythonError가 발생했습니다. 아래 내용을 확인해 주세요.
+          - generic [ref=e111]: "PythonError: Traceback (most recent call last): File \"/lib/python312.zip/_pyodide/_base.py\", line 597, in eval_code_async await CodeRunner( File \"/lib/python312.zip/_pyodide/_base.py\", line 411, in run_async coroutine = eval(self.code, globals, locals) ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ File \"<exec>\", line 9, in <module> File \"main.py\", line 1 print( ^ SyntaxError: '(' was never closed"
+      - region "AI 학습 도우미" [ref=e96]:
+        - generic [ref=e97]:
+          - generic [ref=e98]: AI
+          - generic [ref=e99]: 학습 도우미
+          - generic [ref=e100]: 문제와 작성 코드가 AI에 전달돼요
+        - generic [ref=e101]:
+          - button "힌트 받기" [ref=e102] [cursor=pointer]
+          - button "오류 살펴보기" [ref=e103] [cursor=pointer]
+          - button "예제 실행 추적" [ref=e104] [cursor=pointer]
+        - generic [ref=e105]: "코드에서 `print(` 부분이 문법적으로 올바르지 않아요. 괄호가 열렸지만 닫히지 않아 오류가 발생했네요. 현재 코드에서 괄호를 제대로 닫았는지 확인해보세요. 그리고 `print` 함수 내에 어떤 내용을 출력할지 생각해볼까요?"
+  - status
